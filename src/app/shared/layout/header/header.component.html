@@ -1,7 +1,8 @@
-<a routerLink="/">
-  <button>Home</button>
-</a>
+<mat-toolbar color="primary">
+  <span>TodoApp</span>
+</mat-toolbar>
 
-<a routerLink="/todos">
-  <button>Todos</button>
-</a>
+<mat-button-toggle-group>
+  <mat-button-toggle (click)="openHomePage()">Home</mat-button-toggle>
+  <mat-button-toggle (click)="openTodosPage()" >Todos</mat-button-toggle>
+</mat-button-toggle-group>
