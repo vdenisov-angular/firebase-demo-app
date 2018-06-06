@@ -7,6 +7,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TodosComponent implements OnInit {
 
+  public todos = [
+    {
+      title: 'AAA',
+      description: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+      completed: false,
+    },
+    {
+      title: 'BBB',
+      description: 'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbb',
+      completed: false,
+    },
+    {
+      title: 'CCC',
+      description: 'cccccccccccccccccccccccccccccc',
+      completed: false,
+    }
+  ]
+
   constructor() { }
 
   ngOnInit() { }

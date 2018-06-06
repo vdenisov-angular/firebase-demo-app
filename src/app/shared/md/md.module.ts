@@ -7,7 +7,13 @@ import {
   MatIconModule,
   MatCardModule,
   MatButtonToggleModule,
+  MatTabsModule,
+  MatListModule,
+  MatDividerModule,
+  MatCheckboxModule,
 } from '@angular/material';
+
+// TODO: how to add spinner before loading home page ?
 
 
 @NgModule({
@@ -18,6 +24,10 @@ import {
     MatIconModule,
     MatCardModule,
     MatButtonToggleModule,
+    MatTabsModule,
+    MatListModule,
+    MatDividerModule,
+    MatCheckboxModule,
   ],
   exports: [
     MatToolbarModule,
@@ -26,6 +36,10 @@ import {
     MatIconModule,
     MatCardModule,
     MatButtonToggleModule,
+    MatTabsModule,
+    MatListModule,
+    MatDividerModule,
+    MatCheckboxModule,
   ]
 })
 export class MdModule { }

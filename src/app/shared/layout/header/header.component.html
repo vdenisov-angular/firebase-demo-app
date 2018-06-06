@@ -3,6 +3,26 @@
 </mat-toolbar>
 
 <mat-button-toggle-group>
-  <mat-button-toggle (click)="openHomePage()">Home</mat-button-toggle>
-  <mat-button-toggle (click)="openTodosPage()" >Todos</mat-button-toggle>
+  <mat-button-toggle (click)="openHomePage()">
+    <mat-icon>home</mat-icon>Home
+  </mat-button-toggle>
+  <mat-button-toggle (click)="openTodosPage()">
+    <mat-icon>assignment</mat-icon>Todos
+  </mat-button-toggle>
 </mat-button-toggle-group>
+
+<!--
+
+TODO: how to use it ?
+
+<nav mat-tab-nav-bar>
+  <a mat-tab-link
+      *ngFor="let link of navLinks"
+      [routerLink]="link.path"
+      routerLinkActive #rla="routerLinkActive"
+      [active]="rla.isActive">
+    {{link.label}}
+  </a>
+</nav>
+
+-->

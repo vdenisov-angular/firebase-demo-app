@@ -1,4 +1,9 @@
+.app {
+    background-color: #eeebf4;
+}
+
 .main-area {
     width: 80%;
     margin: auto;
+    height: 1000px;
 }

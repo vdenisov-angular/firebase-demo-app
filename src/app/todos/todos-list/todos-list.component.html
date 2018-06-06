@@ -1,0 +1,6 @@
+<div class="todos-list">
+  <mat-card *ngFor="let todo of todos">
+    <mat-checkbox (click)="onToggle"></mat-checkbox>
+    {{ todo.title }}
+  </mat-card>
+</div>
