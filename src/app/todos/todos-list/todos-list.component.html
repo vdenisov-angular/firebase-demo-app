@@ -1,6 +1,20 @@
 <div class="todos-list">
-  <mat-card *ngFor="let todo of todos">
-    <mat-checkbox (click)="onToggle"></mat-checkbox>
-    {{ todo.title }}
+  <mat-card class="todo-card" *ngFor="let todo of todos">
+
+    <mat-checkbox class="todo-checkbox"
+      color='primary' (click)="onToggle(todo)">
+    </mat-checkbox>
+
+    <mat-card-title class="todo-title"
+      [ngClass]="{'completed': todo.isCompleted}">
+        {{ todo.title }}
+    </mat-card-title>
+
+    <mat-card-actions class="todo-actions">
+      <button mat-icon-button (click)="onDelete(todo)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-card-actions>
+
   </mat-card>
 </div>

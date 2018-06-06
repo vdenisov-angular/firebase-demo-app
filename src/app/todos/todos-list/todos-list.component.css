@@ -2,11 +2,27 @@
     width: 30%;
 }
 
-mat-card {
+.todo-card {
+    vertical-align: top;
     width: 100%;
     margin-bottom: 5px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
-mat-checkbox {
-    margin-right: 10px;
+.todo-title {
+    margin: 0;
+}
+
+.todo-actions {
+    margin-top: -20px;
+}
+
+/* ###################################### */
+
+.completed {
+    color: grey;
+    text-decoration: line-through;
 }

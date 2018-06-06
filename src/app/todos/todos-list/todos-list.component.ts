@@ -15,8 +15,13 @@ export class TodosListComponent implements OnInit {
   }
 
   public onToggle(todo) {
-    todo.completed = !todo.completed;
+    todo.isCompleted = !todo.isCompleted;
     console.log('toggle !');
+  }у
+
+  public onDelete(todo) {
+    this.todos.pop(todo);
+    console.log('delete !');
   }
 
 }

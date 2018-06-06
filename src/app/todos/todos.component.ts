@@ -11,17 +11,17 @@ export class TodosComponent implements OnInit {
     {
       title: 'AAA',
       description: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
-      completed: false,
+      isCompleted: false,
     },
     {
       title: 'BBB',
       description: 'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbb',
-      completed: false,
+      isCompleted: false,
     },
     {
       title: 'CCC',
       description: 'cccccccccccccccccccccccccccccc',
-      completed: false,
+      isCompleted: false,
     }
   ]
 
