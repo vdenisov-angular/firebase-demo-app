@@ -10,17 +10,14 @@ export class TodosComponent implements OnInit {
   public todos = [
     {
       title: 'AAA',
-      description: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
       isCompleted: false,
     },
     {
       title: 'BBB',
-      description: 'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbb',
       isCompleted: false,
     },
     {
       title: 'CCC',
-      description: 'cccccccccccccccccccccccccccccc',
       isCompleted: false,
     }
   ]
@@ -28,5 +25,9 @@ export class TodosComponent implements OnInit {
   constructor() { }
 
   ngOnInit() { }
+
+  public addTodo(todo) {
+    this.todos.push(todo)
+  } 
 
 }

@@ -1,0 +1,13 @@
+<mat-card class="todos-form">
+
+  <mat-form-field class="input-field">
+    <input matInput [(ngModel)]="newTodo"
+      placeholder="Enter your todo here">
+  </mat-form-field>
+
+  <button mat-icon-button class="submit-button"
+    color="accent" (click)="onAdd()">
+      <mat-icon>add</mat-icon>
+  </button>
+
+</mat-card>
