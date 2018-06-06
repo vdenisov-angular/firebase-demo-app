@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-todos-list',
@@ -9,19 +9,19 @@ export class TodosListComponent implements OnInit {
 
   @Input() public todos;
 
+  @Output() toggleEvent = new EventEmitter();
+  @Output() deleteEvent = new EventEmitter();
+
   constructor() { }
 
   ngOnInit() { }
 
   public toggleTodo(todo) {
-    todo.isCompleted = !todo.isCompleted;
+    this.toggleEvent.emit(todo);
   }
 
   public deleteTodo(todo) {
-    let index = this.todos.indexOf(todo);
-    if (index > -1) {
-      this.todos.splice(index, 1);
-    }
+    this.deleteEvent.emit(todo);
   }
 
 }
