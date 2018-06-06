@@ -18,7 +18,10 @@ export class TodosListComponent implements OnInit {
   }
 
   public deleteTodo(todo) {
-    this.todos.pop(todo);
+    let index = this.todos.indexOf(todo);
+    if (index > -1) {
+      this.todos.splice(index, 1);
+    }
   }
 
 }
