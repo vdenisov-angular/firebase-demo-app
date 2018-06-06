@@ -11,17 +11,14 @@ export class TodosListComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit() { }
+
+  public toggleTodo(todo) {
+    todo.isCompleted = !todo.isCompleted;
   }
 
-  public onToggle(todo) {
-    todo.isCompleted = !todo.isCompleted;
-    console.log('toggle !');
-  }у
-
-  public onDelete(todo) {
+  public deleteTodo(todo) {
     this.todos.pop(todo);
-    console.log('delete !');
   }
 
 }

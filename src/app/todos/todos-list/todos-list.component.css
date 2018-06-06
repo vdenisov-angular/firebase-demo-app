@@ -1,28 +1,3 @@
 .todos-list {
     width: 30%;
 }
-
-.todo-card {
-    vertical-align: top;
-    width: 100%;
-    margin-bottom: 5px;
-
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.todo-title {
-    margin: 0;
-}
-
-.todo-actions {
-    margin-top: -20px;
-}
-
-/* ###################################### */
-
-.completed {
-    color: grey;
-    text-decoration: line-through;
-}
