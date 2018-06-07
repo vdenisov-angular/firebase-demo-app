@@ -1,12 +1,26 @@
-<mat-card class="todo-card">
+<mat-card class="todo-card"
+  [ngClass]="{'completed': todoInfo.isCompleted}">
 
-  <mat-checkbox class="todo-checkbox"
+<!-- TODO: как сохранить состояние checked при смене страницы ?
+
+  <mat-checkbox checked class="todo-checkbox"
     color='primary' (click)="onToggle()">
   </mat-checkbox>
-  
-  <mat-card-title class="todo-title"
-    [ngClass]="{'completed': todoInfo.isCompleted}">
-      {{ todoInfo.title }}
+-->
+
+  <mat-card-actions class="todo-actions">
+    <button mat-icon-button (click)="onToggle()">
+      <mat-icon *ngIf="!todoInfo.isCompleted">
+        check_box_outline_blank
+      </mat-icon>
+      <mat-icon *ngIf="todoInfo.isCompleted">
+        check_box
+      </mat-icon>
+    </button>
+  </mat-card-actions>
+
+  <mat-card-title class="todo-title">
+    {{ todoInfo.title }}
   </mat-card-title>
   
   <mat-card-actions class="todo-actions">

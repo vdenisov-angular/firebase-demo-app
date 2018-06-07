@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { TodosService } from './../core';
+
 
 @Component({
   selector: 'app-todos',
@@ -7,38 +9,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TodosComponent implements OnInit {
 
-  public todos = [
-    {
-      title: 'AAA',
-      isCompleted: false,
-    },
-    {
-      title: 'BBB',
-      isCompleted: false,
-    },
-    {
-      title: 'CCC',
-      isCompleted: false,
-    }
-  ]
+  public todos = [];
 
-  constructor() { }
+  constructor(
+    private todosService: TodosService
+  ) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.todos = this.todosService.getAllTodos();
+  }
 
   public addTodo(todo) {
-    this.todos.push(todo);
+    this.todosService.createOneTodo(todo);
   }
 
   public toggleTodo(todo) {
-    todo.isCompleted = !todo.isCompleted;
+    this.todosService.toggleTodo(todo);
   }
 
   public deleteTodo(todo) {
-    let index = this.todos.indexOf(todo);
-    if (index > -1) {
-      this.todos.splice(index, 1);
-    }
+    this.todosService.deleteOneTodo(todo);
   }
 
 }

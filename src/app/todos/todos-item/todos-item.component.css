@@ -2,6 +2,7 @@
     vertical-align: top;
     width: 290px;
     margin: 5px;
+    padding-bottom: 0;
 
     display: inline-flex;
     flex-direction: row;

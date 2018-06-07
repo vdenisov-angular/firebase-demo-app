@@ -11,8 +11,8 @@ import { HeaderComponent } from './layout';
     HeaderComponent,
   ],
   imports: [
-    MdModule,
     CommonModule,
+    MdModule,
     RouterModule,
   ],
   exports: [

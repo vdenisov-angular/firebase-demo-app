@@ -1,7 +1,7 @@
 <mat-card class="todos-form">
 
   <mat-form-field class="input-field">
-    <input matInput [(ngModel)]="newTodo"
+    <input matInput [(ngModel)]="newTodo" (keyup.enter)="onAdd()"
       placeholder="Enter your todo here">
   </mat-form-field>
 
