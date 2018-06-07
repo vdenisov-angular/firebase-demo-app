@@ -20,6 +20,7 @@ export class TodosFormComponent implements OnInit {
       title: this.newTodo,
       isCompleted: false
     };
+    this.newTodo = '';
     this.addEvent.emit(todo);
   }
 
