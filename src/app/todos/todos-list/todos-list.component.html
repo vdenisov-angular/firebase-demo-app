@@ -1,9 +1,17 @@
-<div class="todos-list">
+<div class="todos-list-area">
 
-  <app-todos-item *ngFor="let todo of todos"
-    [todoInfo]="todo"
-    (toggleEvent)="toggleTodo($event)"
-    (deleteEvent)="deleteTodo($event)">
-  </app-todos-item>
+  <div *ngIf="!todos.length" class="no-data">
+    How can you live without todos ?
+  </div>
+
+  <div *ngIf="todos.length" class="todos-list">
+    <app-todos-item *ngFor="let todo of todos"
+      [todoInfo]="todo"
+      (toggleEvent)="toggleTodo($event)"
+      (deleteEvent)="deleteTodo($event)">
+    </app-todos-item>
+  </div>
 
 </div>
+
+

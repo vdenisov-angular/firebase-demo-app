@@ -16,19 +16,29 @@ export class TodosComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.todos = this.todosService.getAllTodos();
+    this.todosService.getAllTodos()
+      .subscribe(data => {
+        this.todos = data;
+      });
   }
 
   public addTodo(todo) {
-    this.todosService.createOneTodo(todo);
+    this.todosService.createOneTodo(todo)
+      .subscribe(data => {
+        this.todos.push(todo);
+      });
   }
 
   public toggleTodo(todo) {
-    this.todosService.toggleTodo(todo);
+    this.todosService.toggleTodo(todo)
+      .subscribe();
   }
 
   public deleteTodo(todo) {
-    this.todosService.deleteOneTodo(todo);
+    this.todosService.deleteOneTodo(todo)
+      .subscribe(data => {
+        this.todos = this.todos.filter(el => el.id != todo.id);
+      });
   }
 
 }

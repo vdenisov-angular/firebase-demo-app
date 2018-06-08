@@ -1,5 +1,8 @@
-.todos-list {
+.todos-list-area {
     height: 300px;
+}
+
+.todos-list {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;

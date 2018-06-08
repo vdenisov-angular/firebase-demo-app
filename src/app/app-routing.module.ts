@@ -1,8 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { MdModule } from './shared';
-import { HttpModule } from '@angular/http';
-import { FormsModule } from '@angular/forms';
+import { SharedModule } from './shared/shared.module';
 import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from './home/home.component';
@@ -12,6 +9,7 @@ import {
   TodosListComponent,
   TodosItemComponent
 } from './todos';
+
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -27,13 +25,11 @@ const appRoutes: Routes = [
     TodosItemComponent,
   ],
   imports: [
-    CommonModule,
-    MdModule,
-    HttpModule,
-    FormsModule,
+    SharedModule,
     RouterModule.forRoot(appRoutes)
   ],
   exports: [
+    SharedModule,
     RouterModule,
   ]
 })
