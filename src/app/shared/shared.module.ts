@@ -5,12 +5,16 @@ import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-import { HeaderComponent } from './layout';
+import {
+  HeaderComponent,
+  FooterComponent,
+} from './layout';
 
 
 @NgModule({
   declarations: [
     HeaderComponent,
+    FooterComponent,
   ],
   imports: [
     CommonModule,
@@ -21,6 +25,7 @@ import { HeaderComponent } from './layout';
   ],
   exports: [
     HeaderComponent,
+    FooterComponent,
 
     CommonModule,
     MdModule,
