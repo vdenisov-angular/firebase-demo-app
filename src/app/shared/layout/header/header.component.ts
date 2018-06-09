@@ -9,12 +9,10 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-  /*
   public navLinks: Object[] = [
     { label: 'Home', path: '/' },
     { label: 'Todos', path: '/todos' },
   ];
-  */
 
   constructor(
     private router: Router,

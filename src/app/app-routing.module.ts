@@ -29,7 +29,6 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes)
   ],
   exports: [
-    SharedModule,
     RouterModule,
   ]
 })

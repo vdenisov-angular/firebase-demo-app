@@ -25,19 +25,21 @@ export class TodosComponent implements OnInit {
   public addTodo(todo) {
     this.todosService.createOneTodo(todo)
       .subscribe(data => {
-        this.todos.push(todo);
+        this.todos.push(data);
       });
   }
 
   public toggleTodo(todo) {
     this.todosService.toggleTodo(todo)
-      .subscribe();
+      .subscribe(data => {
+        console.log(data);
+      });
   }
 
   public deleteTodo(todo) {
     this.todosService.deleteOneTodo(todo)
       .subscribe(data => {
-        this.todos = this.todos.filter(el => el.id != todo.id);
+        this.todos = this.todos.filter(el => el.id !== todo.id);
       });
   }
 

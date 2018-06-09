@@ -6,13 +6,6 @@ import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 
-/* TODO: how to add ?
-
-import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
-import { catchError } from 'rxjs/operators/catchError';
-*/
-
-
 @Injectable()
 export class ApiService {
 
@@ -34,11 +27,13 @@ export class ApiService {
   }
 
   public put(path, id, updates) {
-    return this.http.put(`${this.apiLink}/${path}/${id}`, updates);
+    return this.http.put(`${this.apiLink}/${path}/${id}`, updates)
+      .pipe(map(response => response.json()));
   }
 
   public delete(path, id) {
-    return this.http.delete(`${this.apiLink}/${path}/${id}`);
+    return this.http.delete(`${this.apiLink}/${path}/${id}`)
+      .pipe(map(response => response.json()));
   }
 
 }
