@@ -1,14 +1,8 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from './shared/shared.module';
 import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from './home/home.component';
-import {
-  TodosComponent,
-  TodosFormComponent,
-  TodosListComponent,
-  TodosItemComponent
-} from './todos';
+import { TodosComponent } from './todos';
 
 
 const appRoutes: Routes = [
@@ -17,19 +11,7 @@ const appRoutes: Routes = [
 ]
 
 @NgModule({
-  declarations: [
-    HomeComponent,
-    TodosComponent,
-    TodosFormComponent,
-    TodosListComponent,
-    TodosItemComponent,
-  ],
-  imports: [
-    SharedModule,
-    RouterModule.forRoot(appRoutes)
-  ],
-  exports: [
-    RouterModule,
-  ]
+  imports: [ RouterModule.forRoot(appRoutes) ],
+  exports: [ RouterModule ]
 })
 export class AppRoutingModule { }
