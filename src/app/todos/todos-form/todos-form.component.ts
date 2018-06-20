@@ -16,12 +16,14 @@ export class TodosFormComponent implements OnInit {
   ngOnInit() {}
 
   public onAdd() {
-    let todo = {
-      title: this.newTodo,
-      isCompleted: false
-    };
-    this.newTodo = '';
-    this.addEvent.emit(todo);
+    if (this.newTodo.length) {
+      let todo = {
+        title: this.newTodo,
+        isCompleted: false
+      };
+      this.newTodo = '';
+      this.addEvent.emit(todo);
+    }
   }
 
 }

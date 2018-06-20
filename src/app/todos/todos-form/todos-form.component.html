@@ -6,7 +6,7 @@
   </mat-form-field>
 
   <button mat-icon-button class="submit-button"
-    color="accent" (click)="onAdd()">
+    color="accent" [disabled]="!newTodo.length" (click)="onAdd()">
       <mat-icon>add</mat-icon>
   </button>
 

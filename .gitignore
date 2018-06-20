@@ -7,7 +7,6 @@
 
 # dependencies
 /node_modules
-db.json
 
 # IDEs and editors
 /.idea
