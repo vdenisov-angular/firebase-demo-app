@@ -4,8 +4,6 @@ import { MatDialog } from '@angular/material';
 
 import { LocalStorageService } from '../../../core';
 
-import { AuthLoginComponent } from './../../dialogs';
-
 
 @Component({
   selector: 'app-header',
@@ -15,11 +13,6 @@ import { AuthLoginComponent } from './../../dialogs';
 export class HeaderComponent implements OnInit {
 
   public authorized;
-
-  public navLinks: Object[] = [
-    { label: 'Home', path: '/' },
-    { label: 'Todos', path: '/todos' },
-  ];
 
   constructor(
     private router: Router,
@@ -32,20 +25,16 @@ export class HeaderComponent implements OnInit {
     this.authorized = this.localStorage.read('auth') || false;
   }
 
-  ////////////////// TOOLBAR BUTTONS //////////////////////////
+  openHomePage() {
+    // this.router.navigate(['/']);
+    this.router.navigate( ['/'], {relativeTo: this.route} );
+  }
+
+  ////////////////// IF NOT AUTHORIZED //////////////////////////
 
   signIn() {
-    let dialogRef = this.dialog.open(AuthLoginComponent, {
-      width: '250px',
-      data: { title: 'Log In' }
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      let answer = result;
-      if (answer === true ) {
-        console.log('sign in !');
-        this.authorized = this.localStorage.write('auth', true);
-      }
-    });
+    console.log('sign in !');
+    this.authorized = this.localStorage.write('auth', true);
   }
 
   signUp() {
@@ -53,26 +42,23 @@ export class HeaderComponent implements OnInit {
     this.authorized = this.localStorage.write('auth', true);
   }
 
-  signOut() {
-    console.log('sign out !');
-    this.router.navigate( ['/'], {relativeTo: this.route} );
-    this.authorized = this.localStorage.write('auth', false);
-  }
-
-  openProfile() {
-    console.log('open profile !');
-  }
-
-  /////////////////////////////////////////////////////////////
-
-  openHomePage() {
-    // this.router.navigate(['/']);
-    this.router.navigate( ['/'], {relativeTo: this.route} );
-  }
+  ////////////////// IF AUTHORIZED //////////////////////////
 
   openTodosPage() {
     // this.router.navigate(['/todos']);
     this.router.navigate( ['/todos'], {relativeTo: this.route} );
   }
+
+  openProfilePage() {
+    console.log('open profile !');
+  }
+
+  signOut() {
+    console.log('sign out !');
+    this.openHomePage();
+    this.authorized = this.localStorage.write('auth', false);
+  }
+
+  /////////////////////////////////////////////////////////////
 
 }

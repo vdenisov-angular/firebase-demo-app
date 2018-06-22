@@ -1,30 +1,30 @@
 <mat-toolbar color="primary" class="toolbar-area">
 
   <div class="project-name">
-    TodoApp
+    Welcome in Todo App !!!
   </div>
 
   <div class="toolbar-buttons">
 
     <div *ngIf="!authorized">
-      <button mat-button (click)="signIn()">Log In</button>
+      <button mat-button (click)="openHomePage()">Home</button>
+      <button mat-button (click)="signIn()">Sign In</button>
       <button mat-button (click)="signUp()">Sign Up</button>
     </div>
 
     <div *ngIf="authorized">
-      <button mat-button (click)="signOut()">Log Out</button>
-      <button mat-button (click)="openProfile()">Profile</button>
+      <button mat-button (click)="openHomePage()">Home</button>
+      <button mat-button (click)="openTodosPage()">Todos</button>
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>account_circle</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="openProfilePage()">Profile</button>
+        <button mat-menu-item (click)="signOut()">Sign Out</button>
+      </mat-menu>
     </div>
 
   </div>
 
 </mat-toolbar>
 
-<mat-button-toggle-group class="toggle-group" *ngIf="authorized">
-  <mat-button-toggle (click)="openHomePage()">
-    <mat-icon>home</mat-icon>Home
-  </mat-button-toggle>
-  <mat-button-toggle (click)="openTodosPage()">
-    <mat-icon>assignment</mat-icon>Todos
-  </mat-button-toggle>
-</mat-button-toggle-group>

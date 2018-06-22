@@ -4,8 +4,11 @@
   justify-content: space-between;
 }
 
+.project-name {
+  font-weight: bold;
+  font-style: italic;
+}
 
-
-.toggle-group {
-  background-color: white;
+button {
+  font-size: 20px;
 }

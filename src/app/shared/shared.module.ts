@@ -9,8 +9,6 @@ import { HeaderComponent, FooterComponent } from './layout';
 
 import {
   DialogDeleteComponent,
-  
-  AuthLoginComponent,
 } from './dialogs';
 
 
@@ -20,8 +18,6 @@ import {
     FooterComponent,
 
     DialogDeleteComponent,
-
-    AuthLoginComponent,
   ],
   imports: [
     CommonModule,
@@ -32,8 +28,6 @@ import {
   ],
   entryComponents: [
     DialogDeleteComponent,
-
-    AuthLoginComponent,
   ],
   exports: [
     HeaderComponent,

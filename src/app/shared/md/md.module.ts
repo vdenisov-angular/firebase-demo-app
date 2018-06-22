@@ -12,6 +12,7 @@ import {
   MatDividerModule,
   MatCheckboxModule,
   MatDialogModule,
+  MatMenuModule,
 } from '@angular/material';
 
 // TODO: how to add spinner before loading home page ?
@@ -30,6 +31,7 @@ import {
     MatDividerModule,
     MatCheckboxModule,
     MatDialogModule,
+    MatMenuModule,
   ],
   exports: [
     MatToolbarModule,
@@ -43,6 +45,7 @@ import {
     MatDividerModule,
     MatCheckboxModule,
     MatDialogModule,
+    MatMenuModule,
   ]
 })
 export class MdModule { }
