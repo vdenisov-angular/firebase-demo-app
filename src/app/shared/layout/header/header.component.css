@@ -1,3 +1,11 @@
+.toolbar-area {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+
+
 .toggle-group {
-    background-color: white;
+  background-color: white;
 }

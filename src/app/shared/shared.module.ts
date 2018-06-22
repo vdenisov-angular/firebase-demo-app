@@ -7,11 +7,21 @@ import { RouterModule } from '@angular/router';
 
 import { HeaderComponent, FooterComponent } from './layout';
 
+import {
+  DialogDeleteComponent,
+  
+  AuthLoginComponent,
+} from './dialogs';
+
 
 @NgModule({
   declarations: [
     HeaderComponent,
     FooterComponent,
+
+    DialogDeleteComponent,
+
+    AuthLoginComponent,
   ],
   imports: [
     CommonModule,
@@ -19,6 +29,11 @@ import { HeaderComponent, FooterComponent } from './layout';
     FormsModule,
     HttpModule,
     RouterModule,
+  ],
+  entryComponents: [
+    DialogDeleteComponent,
+
+    AuthLoginComponent,
   ],
   exports: [
     HeaderComponent,

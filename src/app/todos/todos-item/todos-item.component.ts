@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MatDialog } from '@angular/material';
 
-import { DialogDeleteComponent } from './../../dialogs';
+import { DialogDeleteComponent } from './../../shared/dialogs';
 
 
 @Component({

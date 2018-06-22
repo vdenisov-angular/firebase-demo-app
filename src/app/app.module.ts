@@ -9,15 +9,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 
-import { DialogDeleteComponent } from './dialogs';
-
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-
-    DialogDeleteComponent,
   ],
   imports: [
     BrowserModule,
@@ -26,9 +22,6 @@ import { DialogDeleteComponent } from './dialogs';
     SharedModule,
     CoreModule.forRoot(),
     AppRoutingModule,
-  ],
-  entryComponents: [
-    DialogDeleteComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]
