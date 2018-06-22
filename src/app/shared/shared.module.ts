@@ -5,10 +5,7 @@ import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-import {
-  HeaderComponent,
-  FooterComponent,
-} from './layout';
+import { HeaderComponent, FooterComponent } from './layout';
 
 
 @NgModule({

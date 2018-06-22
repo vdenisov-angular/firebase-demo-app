@@ -9,8 +9,10 @@ const appRoutes: Routes = [
   { path: 'todos', loadChildren: './todos/todos.module#TodosModule' },
 ]
 
+// imports: [ RouterModule.forRoot(appRoutes, { enableTracing: true }) ],
+
 @NgModule({
-  imports: [ RouterModule.forRoot(appRoutes, { enableTracing: true }) ],
+  imports: [ RouterModule.forRoot(appRoutes) ],
   exports: [ RouterModule ]
 })
 export class AppRoutingModule { }
