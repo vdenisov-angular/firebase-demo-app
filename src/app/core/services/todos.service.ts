@@ -4,7 +4,6 @@ import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 import { ApiService } from './api.service';
-import { LocalStorageService } from './local-storage.service';
 
 
 @Injectable()
@@ -12,7 +11,6 @@ export class TodosService {
 
   constructor(
     private apiService: ApiService,
-    private localStorageService: LocalStorageService,
   ) { }
 
   public getAllTodos() {

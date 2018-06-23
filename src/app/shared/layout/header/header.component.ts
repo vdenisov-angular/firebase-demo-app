@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material';
 
-import { LocalStorageService } from '../../../core/services';
+import { AuthService } from '../../../core/services';
 
 
 @Component({
@@ -12,18 +12,23 @@ import { LocalStorageService } from '../../../core/services';
 })
 export class HeaderComponent implements OnInit {
 
-  public authorized;
+  public authorized = this.authService.checkAuth();
   public pressed = 'Home';
+
+  private authSubscription;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private localStorage: LocalStorageService,
+    private authService: AuthService,
     public dialog: MatDialog,
   ) { }
 
   ngOnInit() {
-    this.authorized = this.localStorage.read('auth') || false;
+    this.authSubscription = this.authService.authValue
+      .subscribe((nextValue) => {
+        this.authorized = nextValue;
+      })
   }
 
   openHomePage() {
@@ -48,14 +53,21 @@ export class HeaderComponent implements OnInit {
   ////////////////// IF AUTHORIZED //////////////////////////
 
   openTodosPage() {
+    this.activateButton('Todos');
     this.router.navigateByUrl('/todos');
   }
 
+  userActions() {
+    //
+  }
+
   openProfilePage() {
-    console.log('open profile !');
+    this.router.navigateByUrl('/profile');
+    this.pressed = '';
   }
 
   signOut() {
+    this.authService.signOut();
     this.openHomePage();
   }
 

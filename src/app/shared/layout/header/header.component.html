@@ -26,15 +26,34 @@
     </div>
 
     <div *ngIf="authorized">
-      <button mat-button (click)="openHomePage()">Home</button>
-      <button mat-button (click)="openTodosPage()">Todos</button>
-      <button mat-icon-button [matMenuTriggerFor]="menu">
-        <mat-icon>account_circle</mat-icon>
+
+      <button mat-button (click)="openHomePage()"
+        [ngClass]="{'active': pressed === 'Home'}">
+          Home
       </button>
+
+      <button mat-button (click)="openTodosPage()"
+        [ngClass]="{'active': pressed === 'Todos'}">
+          Todos
+      </button>
+
+      <button mat-icon-button [matMenuTriggerFor]="menu"
+        (click)="userActions()">
+          <mat-icon>account_circle</mat-icon>
+      </button>
+      
       <mat-menu #menu="matMenu">
-        <button mat-menu-item (click)="openProfilePage()">Profile</button>
-        <button mat-menu-item (click)="signOut()">Sign Out</button>
+        
+        <button mat-menu-item class="extra" (click)="openProfilePage()">
+          Profile
+        </button>
+        
+        <button mat-menu-item class="extra" (click)="signOut()">
+          Sign Out
+        </button>
+      
       </mat-menu>
+
     </div>
 
   </div>

@@ -29,8 +29,9 @@
             formControlName="password" placeholder="Password"/>
         </mat-form-field>
 
-        <button mat-button [disabled]="!authForm.valid" type="submit">
-          {{ title }}
+        <button mat-button class="button-submit"
+          [disabled]="!authForm.valid" type="submit">
+            {{ title }}
         </button>
 
       </form>
