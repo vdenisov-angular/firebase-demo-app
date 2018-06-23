@@ -7,6 +7,7 @@ import { HomeComponent } from './home/home.component';
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'todos', loadChildren: './todos/todos.module#TodosModule' },
+  { path: 'auth', loadChildren: './auth/auth.module#AuthModule' },
 ]
 
 // imports: [ RouterModule.forRoot(appRoutes, { enableTracing: true }) ],

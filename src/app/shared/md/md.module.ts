@@ -13,6 +13,7 @@ import {
   MatCheckboxModule,
   MatDialogModule,
   MatMenuModule,
+  MatFormFieldModule,
 } from '@angular/material';
 
 // TODO: how to add spinner before loading home page ?
@@ -32,6 +33,7 @@ import {
     MatCheckboxModule,
     MatDialogModule,
     MatMenuModule,
+    MatFormFieldModule,
   ],
   exports: [
     MatToolbarModule,
@@ -46,6 +48,7 @@ import {
     MatCheckboxModule,
     MatDialogModule,
     MatMenuModule,
+    MatFormFieldModule,
   ]
 })
 export class MdModule { }

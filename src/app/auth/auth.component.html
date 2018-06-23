@@ -1,0 +1,51 @@
+<div class="auth-area">
+
+  <div *ngIf="authType === undefined">
+    <h2>undefined</h2>
+  </div>
+
+  <mat-card class="auth-card" *ngIf="authType !== undefined">
+
+    <mat-card-title class="auth-title">
+      {{ authType | uppercase }}
+    </mat-card-title>
+
+    <mat-card-content class="auth-form">
+
+      <form [formGroup]="authForm" (ngSubmit)="submitForm()">
+
+        <input matInput type="text" *ngIf="authType == 'register'"
+          formControlName="username" placeholder="Username"/>
+        
+        <input matInput type="text"
+          formControlName="email" placeholder="Email"/>
+
+        <input matInput type="password"
+          formControlName="password" placeholder="Password"/>
+
+        <button mat-button [disabled]="!authForm.valid" type="submit">
+          {{ title }}
+        </button>
+
+      </form>
+
+    </mat-card-content>
+
+    <mat-card-footer>
+      <a [routerLink]="['/auth/login']" *ngIf="authType == 'register'">
+        Have an account?
+      </a>
+      
+      <a [routerLink]="['/auth/register']" *ngIf="authType == 'login'">
+        Need an account?
+      </a>
+    </mat-card-footer>
+
+  </mat-card>
+
+</div>
+
+
+<!-- <div class="auth-area">
+  <router-outlet></router-outlet>
+</div> -->

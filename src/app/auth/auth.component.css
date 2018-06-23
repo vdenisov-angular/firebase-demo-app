@@ -1,0 +1,38 @@
+.auth-area {
+  margin: 0 auto;
+  width: 50%;
+  text-align: center;
+}
+
+.auth-card {
+  padding: 0 0 30px; 
+}
+
+.auth-title {
+  margin: 0 auto !important;
+  padding: 10px;
+  background-color: #04ff0042;
+}
+
+.auth-form {
+  margin: 30px 60px;
+}
+
+/****************************************/
+
+/* TODO: почему то material не сработал и пришлось переделывать*/
+
+input {
+  display: block;
+  margin: 30px auto;
+  border-radius: 20px;
+  width: 85%;
+  height: 30px;
+  text-align: center;
+  font-size: 16px;
+}
+
+button {
+  font-size: 20px;
+  font-weight: bold;
+}

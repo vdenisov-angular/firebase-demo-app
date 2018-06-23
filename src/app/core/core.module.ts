@@ -4,6 +4,8 @@ import {
   ApiService,
   LocalStorageService,
   TodosService,
+  UserService,
+  AuthService,
 } from './services';
 
 
@@ -16,6 +18,8 @@ export class CoreModule {
         ApiService,
         LocalStorageService,
         TodosService,
+        UserService,
+        AuthService,
       ]
     };
   }

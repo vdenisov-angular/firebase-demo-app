@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material';
 
-import { LocalStorageService } from '../../../core';
+import { LocalStorageService } from '../../../core/services';
 
 
 @Component({
@@ -26,27 +26,25 @@ export class HeaderComponent implements OnInit {
   }
 
   openHomePage() {
+    this.router.navigateByUrl('/');
     // this.router.navigate(['/']);
-    this.router.navigate( ['/'], {relativeTo: this.route} );
+    // this.router.navigate( ['/'], {relativeTo: this.route} );
   }
 
   ////////////////// IF NOT AUTHORIZED //////////////////////////
 
   signIn() {
-    console.log('sign in !');
-    this.authorized = this.localStorage.write('auth', true);
+    this.router.navigateByUrl('/auth/login');
   }
 
   signUp() {
-    console.log('sign up !');
-    this.authorized = this.localStorage.write('auth', true);
+    this.router.navigateByUrl('/auth/register');
   }
 
   ////////////////// IF AUTHORIZED //////////////////////////
 
   openTodosPage() {
-    // this.router.navigate(['/todos']);
-    this.router.navigate( ['/todos'], {relativeTo: this.route} );
+    this.router.navigateByUrl('/todos');
   }
 
   openProfilePage() {
@@ -54,9 +52,7 @@ export class HeaderComponent implements OnInit {
   }
 
   signOut() {
-    console.log('sign out !');
     this.openHomePage();
-    this.authorized = this.localStorage.write('auth', false);
   }
 
   /////////////////////////////////////////////////////////////

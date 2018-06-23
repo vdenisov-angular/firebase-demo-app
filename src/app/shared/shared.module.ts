@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MdModule } from './md/md.module';
 import { HttpModule } from '@angular/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { HeaderComponent, FooterComponent } from './layout';
@@ -22,9 +22,11 @@ import {
   imports: [
     CommonModule,
     MdModule,
-    FormsModule,
     HttpModule,
     RouterModule,
+
+    FormsModule,
+    ReactiveFormsModule,
   ],
   entryComponents: [
     DialogDeleteComponent,
@@ -35,9 +37,11 @@ import {
 
     CommonModule,
     MdModule,
-    FormsModule,
     HttpModule,
     RouterModule,
+
+    FormsModule,
+    ReactiveFormsModule,
   ]
 })
 export class SharedModule { }
