@@ -11,4 +11,11 @@
 
 button {
   font-size: 20px;
+  color: #FFED70;
+}
+
+.active {
+  background-color: #8C98DA;
+  height: 70px;
+  color: #FFB570;
 }

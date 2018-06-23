@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 
 import {
   MatToolbarModule,
-  MatInputModule,
   MatButtonModule,
   MatIconModule,
   MatCardModule,
@@ -13,8 +12,10 @@ import {
   MatCheckboxModule,
   MatDialogModule,
   MatMenuModule,
-  MatFormFieldModule,
 } from '@angular/material';
+
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 // TODO: how to add spinner before loading home page ?
 

@@ -21,45 +21,23 @@ export class AuthComponent implements OnInit {
     private fb: FormBuilder,
   ) {
     this.authForm = this.fb.group({
+      'email': ['', Validators.required],
       'password': ['', Validators.required]
     });
   }
 
-  ngOnInit() {
-    // TODO: не могу подписаться на изменения
-    // this.route.url.subscribe(data => {
-    //   console.log('data = ', data);
-    // });
-    
-    this.router.events.subscribe((event: Event) => {
-
-      if(event instanceof NavigationEnd ){
-        let url = event.url;
-        this.authType = url.split('/')[2];
-        console.log(this.authType);
+  ngOnInit() {    
+    this.route.url.subscribe(data => {
+      // Get the last piece of the URL (it's either 'login' or 'register')
+      this.authType = data[data.length - 1].path;
+      // Set a title for the page accordingly
+      this.title = (this.authType === 'login') ? 'Sign in' : 'Sign up';
+      // add form control for username if this is the register page
+      if (this.authType === 'register') {
+        this.authForm.addControl('username', new FormControl());
       }
-
-      switch(this.authType) {
-        case 'login': {
-          this.title = 'Sign in';
-          this.authForm.addControl('email', new FormControl());
-          break;
-        }
-        case 'register': {
-          this.title = 'Sign up';
-          this.authForm.addControl('username', new FormControl());
-          this.authForm.addControl('email', new FormControl());
-          break;
-        }
-        case 'reset': {
-          this.title = 'Reset pass';
-          this.authForm.addControl('newPass', new FormControl());
-          break;
-        }
-      }
-
     });
-
+    
   }
 
   submitForm() {

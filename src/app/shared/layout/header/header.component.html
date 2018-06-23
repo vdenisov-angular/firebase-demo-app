@@ -7,9 +7,22 @@
   <div class="toolbar-buttons">
 
     <div *ngIf="!authorized">
-      <button mat-button (click)="openHomePage()">Home</button>
-      <button mat-button (click)="signIn()">Sign In</button>
-      <button mat-button (click)="signUp()">Sign Up</button>
+  
+      <button mat-button (click)="openHomePage()"
+        [ngClass]="{'active': pressed === 'Home'}">
+          Home
+      </button>
+
+      <button mat-button (click)="signIn()"
+        [ngClass]="{'active': pressed === 'Sign In'}">
+          Sign In
+      </button>
+
+      <button mat-button (click)="signUp()"
+        [ngClass]="{'active': pressed === 'Sign Up'}">
+          Sign Up
+      </button>
+      
     </div>
 
     <div *ngIf="authorized">
