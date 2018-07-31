@@ -16,10 +16,10 @@ export class TodosComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.todosService.getAllTodos()
-      .subscribe(data => {
-        this.todos = data;
-      });
+    var x = this.todosService.getAllTodos();
+    x.valueChanges().subscribe(todos => {
+      console.log('todos = ', todos);
+    });
   }
 
   public addTodo(todo) {

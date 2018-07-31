@@ -5,6 +5,8 @@ import { Http } from '@angular/http';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+
 
 @Injectable()
 export class ApiService {
@@ -14,11 +16,14 @@ export class ApiService {
 
   constructor(
     private http: Http,
+    private fireDB: AngularFireDatabase
   ) { }
 
-  public get(path) {
-    return this.http.get(`${this.apiLink}/${path}`)
-      .pipe(map(response => response.json()));
+  public get(path): AngularFireList<any> {
+    return this.fireDB.list('/todos');
+
+    // return this.http.get(`${this.apiLink}/${path}`)
+    //   .pipe(map(response => response.json()));
   }
 
   public post(path, data) {
