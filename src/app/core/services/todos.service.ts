@@ -1,33 +1,44 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
-import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
-
 import { ApiService } from './api.service';
+
+import {
+  AngularFireDatabase,
+  AngularFireList,
+} from 'angularfire2/database';
 
 
 @Injectable()
 export class TodosService {
 
+  public todosRef: AngularFireList<any>;
+  // todosRef: AngularFireObject<any[]>;
+
   constructor(
-    private apiService: ApiService,
-  ) { }
+    // private apiService: ApiService,
+    private fireDB: AngularFireDatabase
+  ) {
+    this.todosRef = this.fireDB.list('todos');
+  }
 
   public getAllTodos() {
-    return this.apiService.get('todos');
+    return this.todosRef;
+    // return this.apiService.get('todos');
   }
 
   public createOneTodo(todo) {
-    return this.apiService.post('todos', todo);
+    this.todosRef.push(todo);
+    // return this.apiService.post('todos', todo);
   }
 
   public toggleTodo(todo) {
     todo.isCompleted = !todo.isCompleted;
-    return this.apiService.put('todos', todo.id, todo);
+    this.todosRef.update(todo.key, todo);
+    // return this.apiService.put('todos', todo);
   }
 
   public deleteOneTodo(todo) {
-    return this.apiService.delete('todos', todo.id);
+    this.todosRef.remove(todo.key);
+    // return this.apiService.delete('todos', todo);
   }
 
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TodosService } from './../core/services';
-
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-todos',
@@ -16,31 +16,40 @@ export class TodosComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    var x = this.todosService.getAllTodos();
-    x.valueChanges().subscribe(todos => {
-      console.log('todos = ', todos);
+    this.todosService.getAllTodos()
+      .snapshotChanges().pipe(
+        map(changes =>
+          changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
+        )
+    )
+    .subscribe(data => {
+      this.todos = data;
+      console.log('todos = ', this.todos);
     });
+    // this.todosService.getAllTodos()
+    //   .subscribe(data => {
+    //     this.todos = data;
+    //     console.log('todos = ', this.todos);
+    //     console.log('todos[0].$key = ', this.todos[0].$key);
+    //     console.log('todos[0].key = ', this.todos[0].key);
+    // });
   }
 
   public addTodo(todo) {
-    this.todosService.createOneTodo(todo)
-      .subscribe(data => {
-        this.todos.push(data);
-      });
+    console.log('new todo = ', todo);
+    this.todosService.createOneTodo(todo);
   }
 
   public toggleTodo(todo) {
     this.todosService.toggleTodo(todo)
-      .subscribe(data => {
-        console.log(data);
-      });
+
   }
 
   public deleteTodo(todo) {
-    this.todosService.deleteOneTodo(todo)
-      .subscribe(data => {
-        this.todos = this.todos.filter(el => el.id !== todo.id);
-      });
+    this.todosService.deleteOneTodo(todo);
+      // .subscribe(data => {
+      //   this.todos = this.todos.filter(el => el.id !== todo.id);
+      // });
   }
 
 }
