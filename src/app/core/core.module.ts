@@ -8,6 +8,7 @@ import {
   AuthService,
 } from './services';
 
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @NgModule({ })
 export class CoreModule {
@@ -20,6 +21,8 @@ export class CoreModule {
         TodosService,
         UserService,
         AuthService,
+
+        AngularFireAuth,
       ]
     };
   }
