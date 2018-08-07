@@ -42,9 +42,14 @@ export class AuthService {
 
     return this.afAuth.auth.createUserWithEmailAndPassword(data.email, data.password)
       .then(user => {
-        this.authValue.next(true);
-        this.user = user.user;
-        console.log('user registered:', this.user);
+        if (user) {
+          this.authValue.next(true);
+          this.user = user.user;
+          return true;
+        } else {
+          this.authValue.next(false);
+          return false;
+        }
       })
       .catch(this.handleError);
   }
@@ -54,11 +59,16 @@ export class AuthService {
     // this.authValue.next(true);
     // this.localStorageService.write('auth', true);
 
-    return this.afAuth.auth.signInWithEmailAndPassword(data.email, data.password)
+    this.afAuth.auth.signInWithEmailAndPassword(data.email, data.password)
       .then(user => {
-        this.authValue.next(true);
-        this.user = user.user;
-        console.log('user authorized:', this.user);
+        if (user) {
+          this.authValue.next(true);
+          this.user = user.user;
+          return true;
+        } else {
+          this.authValue.next(false);
+          return false;
+        }
       })
       .catch(this.handleError);
   }
@@ -76,9 +86,8 @@ export class AuthService {
       .catch(this.handleError);
   }
 
-  public handleError(error: any) {
-    console.error('!!! ERROR !!!', error);
-    return Observable.throw(error.message || error);
+  public handleError(err: any) {
+    return {error: err.message || err};
   }
 
 }

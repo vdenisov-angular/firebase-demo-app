@@ -31,7 +31,7 @@ export class AuthComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnInit() {    
+  ngOnInit() {
     this.subscription = this.route.url.subscribe(data => {
       this.authType = data[data.length - 1].path;
       this.title = (this.authType === 'login') ? 'Sign in' : 'Sign up';
@@ -44,16 +44,23 @@ export class AuthComponent implements OnInit, OnDestroy {
   submitForm() {
     this.isSubmitting = true;
     const credentials = this.authForm.value;
+    let result;
 
-    switch(this.authType) {
+    switch (this.authType) {
       case 'login':
-        this.authService.signIn(credentials);
+        result = this.authService.signIn(credentials);
         break;
       case 'register':
-        this.authService.signUp(credentials);
+        result = this.authService.signUp(credentials);
         break;
     }
-    this.router.navigateByUrl('/');
+
+    if (result === true) {
+      this.router.navigateByUrl('/');
+    }
+    if (result.error) {
+      console.log('error -> FUCK');
+    }
   }
 
   ngOnDestroy() {

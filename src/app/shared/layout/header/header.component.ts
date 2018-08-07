@@ -28,7 +28,7 @@ export class HeaderComponent implements OnInit {
     this.authSubscription = this.authService.authValue
       .subscribe((nextValue) => {
         this.authorized = nextValue;
-      })
+      });
   }
 
   openHomePage() {
