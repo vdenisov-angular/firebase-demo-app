@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 
 const appRoutes: Routes = [
@@ -10,7 +11,9 @@ const appRoutes: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: 'todos', loadChildren: './todos/todos.module#TodosModule' },
   { path: 'auth', loadChildren: './auth/auth.module#AuthModule' },
-]
+  { path: 'not-found', component: NotFoundComponent },
+  { path: '**', redirectTo: 'not-found' }
+];
 
 // imports: [ RouterModule.forRoot(appRoutes, { enableTracing: true }) ],
 
