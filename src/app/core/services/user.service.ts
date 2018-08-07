@@ -16,7 +16,7 @@ export class UserService {
   ) { }
 
   public getUser(uid: string) {
-    return this.apiService.get(`users/${uid}`)
+    return this.apiService.get(`users/${uid}`);
   }
 
 }

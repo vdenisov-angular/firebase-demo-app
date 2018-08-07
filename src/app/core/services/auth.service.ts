@@ -34,7 +34,7 @@ export class AuthService {
   }
 
   public checkAuth() {
-    return this.localStorageService.read('auth') || false;
+    // return this.localStorageService.read('auth') || false;
   }
 
   public signUp(data) {
