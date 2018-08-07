@@ -13,7 +13,7 @@ import { AuthService } from '../../../core/services';
 export class HeaderComponent implements OnInit {
 
   public authorized = this.authService.checkAuth();
-  public pressed = 'Home';
+  // public pressed = 'Home';
 
   private authSubscription;
 
@@ -32,7 +32,7 @@ export class HeaderComponent implements OnInit {
   }
 
   openHomePage() {
-    this.activateButton('Home');
+    // this.activateButton('Home');
     this.router.navigateByUrl('/');
     // this.router.navigate(['/']);
     // this.router.navigate( ['/'], {relativeTo: this.route} );
@@ -41,12 +41,14 @@ export class HeaderComponent implements OnInit {
   ////////////////// IF NOT AUTHORIZED //////////////////////////
 
   signIn() {
-    this.activateButton('Sign In');
+    // this.activateButton('Sign In');
+    console.log('go to -> /auth/login');
     this.router.navigateByUrl('/auth/login');
   }
 
   signUp() {
-    this.activateButton('Sign Up');
+    // this.activateButton('Sign Up');
+    console.log('go to -> /auth/register');
     this.router.navigateByUrl('/auth/register');
   }
 
@@ -63,7 +65,7 @@ export class HeaderComponent implements OnInit {
 
   openProfilePage() {
     this.router.navigateByUrl('/profile');
-    this.pressed = '';
+    // this.pressed = '';
   }
 
   signOut() {
@@ -74,7 +76,7 @@ export class HeaderComponent implements OnInit {
   /////////////////////////////////////////////////////////////
 
   activateButton(title) {
-    this.pressed = title;
+    // this.pressed = title;
   }
 
 }

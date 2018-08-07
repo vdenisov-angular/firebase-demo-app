@@ -12,6 +12,9 @@ import { AuthService } from './../core/services';
 })
 export class AuthComponent implements OnInit, OnDestroy {
 
+  public authorized = this.authService.checkAuth();
+  private authSubscription;
+
   public authType = undefined;
   public title = undefined;
   public isSubmitting = false;
@@ -39,12 +42,17 @@ export class AuthComponent implements OnInit, OnDestroy {
         this.authForm.addControl('username', new FormControl());
       }
     });
+    this.authSubscription = this.authService.authValue
+      .subscribe((nextValue) => {
+        this.authorized = nextValue;
+      });
   }
 
   submitForm() {
     this.isSubmitting = true;
     const credentials = this.authForm.value;
-    let result;
+    console.log('credentials -> ', credentials);
+    let result = null;
 
     switch (this.authType) {
       case 'login':
@@ -55,13 +63,33 @@ export class AuthComponent implements OnInit, OnDestroy {
         break;
     }
 
-    if (result === true) {
+    console.log('\nresult -> ',
+      result || '\n\n!!! PRESS "Sign in" BUTTON AGAIN !!!' +
+      '\n\nAND LOOK TO RESULT');
+
+    if (this.authorized) {
       this.router.navigateByUrl('/');
+    } else {
+      console.log('Unauthorized');
     }
-    if (result.error) {
-      console.log('error -> FUCK');
-    }
+
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   ngOnDestroy() {
     this.subscription.unsubscribe();

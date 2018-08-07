@@ -16,6 +16,8 @@ export class AuthService {
 
   public user: firebase.User;
 
+  public failureError = undefined;
+
   constructor(
     // private apiService: ApiService,
     private localStorageService: LocalStorageService,
@@ -40,15 +42,14 @@ export class AuthService {
     // this.authValue.next(true);
     // this.localStorageService.write('auth', true);
 
-    return this.afAuth.auth.createUserWithEmailAndPassword(data.email, data.password)
+    return this.afAuth.auth
+      .createUserWithEmailAndPassword(data.email, data.password)
       .then(user => {
         if (user) {
           this.authValue.next(true);
           this.user = user.user;
-          return true;
         } else {
           this.authValue.next(false);
-          return false;
         }
       })
       .catch(this.handleError);
@@ -59,18 +60,18 @@ export class AuthService {
     // this.authValue.next(true);
     // this.localStorageService.write('auth', true);
 
-    this.afAuth.auth.signInWithEmailAndPassword(data.email, data.password)
+    this.afAuth.auth
+      .signInWithEmailAndPassword(data.email, data.password)
       .then(user => {
         if (user) {
           this.authValue.next(true);
           this.user = user.user;
-          return true;
         } else {
           this.authValue.next(false);
-          return false;
         }
       })
-      .catch(this.handleError);
+      .catch(error => this.failureError = error);
+    return this.failureError;
   }
 
   public signOut() {
@@ -86,8 +87,16 @@ export class AuthService {
       .catch(this.handleError);
   }
 
-  public handleError(err: any) {
-    return {error: err.message || err};
+  public handleError(error: any) {
+    this.failureError = error.message || error;
+    // console.log('error.message -> ', error.message);
+    // console.log('error -> ', error);
+    // this.failureError = error.message || error;
+    // console.log('this.failureError -> ', this.failureError);
+  }
+
+  public findСauseOfFailure() {
+    return this.failureError;
   }
 
 }

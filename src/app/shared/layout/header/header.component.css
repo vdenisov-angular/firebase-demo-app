@@ -23,3 +23,7 @@ button {
 .extra {
   color: black;
 }
+
+ul li {
+  display: inline;
+}
