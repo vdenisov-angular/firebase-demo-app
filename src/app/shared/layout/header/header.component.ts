@@ -12,7 +12,7 @@ import { AuthService } from '../../../core/services';
 })
 export class HeaderComponent implements OnInit {
 
-  public authorized = this.authService.checkAuth();
+  public authorized;
   // public pressed = 'Home';
 
   private authSubscription;
