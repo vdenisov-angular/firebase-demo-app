@@ -47,14 +47,12 @@ export class HeaderComponent implements OnInit {
   ////////////////// IF NOT AUTHORIZED //////////////////////////
 
   signIn() {
-    // this.activateButton('Sign In');
-    console.log('go to -> /auth/login');
+    this.activateButton('Sign In');
     this.router.navigateByUrl('/auth/login');
   }
 
   signUp() {
-    // this.activateButton('Sign Up');
-    console.log('go to -> /auth/register');
+    this.activateButton('Sign Up');
     this.router.navigateByUrl('/auth/register');
   }
 
