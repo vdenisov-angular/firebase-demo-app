@@ -17,6 +17,12 @@ export class HeaderComponent implements OnInit {
 
   private authSubscription;
 
+  public navLinks = [
+    { path: '/', label: 'Home' },
+    { path: '/auth/login', label: 'Sign In' },
+    { path: '/auth/register', label: 'Sign Up' },
+  ];
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,

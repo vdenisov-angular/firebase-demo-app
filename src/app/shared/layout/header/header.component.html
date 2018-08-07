@@ -8,7 +8,20 @@
 
     <div *ngIf="!authorized">
 
-      <ul>
+      <nav mat-tab-nav-bar [color]="accent">
+        <a mat-tab-link class="button-label"
+        *ngFor="let link of navLinks"
+          [routerLink]="link.path"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact: true}"
+          #rla="routerLinkActive"
+          [active]="rla.isActive">
+        {{link.label}}
+        </a>
+      </nav>
+
+  
+      <!-- <ul>
 
         <li
           routerLinkActive="active"
@@ -40,7 +53,7 @@
           </a>
         </li>
 
-      </ul>
+      </ul> -->
   
 
 
