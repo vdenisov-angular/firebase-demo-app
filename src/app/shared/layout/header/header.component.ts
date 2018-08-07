@@ -13,9 +13,15 @@ import { AuthService } from '../../../core/services';
 export class HeaderComponent implements OnInit {
 
   public authorized = this.authService.checkAuth();
-  public pressed = 'Home';
+  // public pressed = 'Home';
 
   private authSubscription;
+
+  public navLinks = [
+    { path: '/', label: 'Home' },
+    { path: '/auth/login', label: 'Sign In' },
+    { path: '/auth/register', label: 'Sign Up' },
+  ];
 
   constructor(
     private router: Router,
@@ -32,7 +38,7 @@ export class HeaderComponent implements OnInit {
   }
 
   openHomePage() {
-    this.activateButton('Home');
+    // this.activateButton('Home');
     this.router.navigateByUrl('/');
     // this.router.navigate(['/']);
     // this.router.navigate( ['/'], {relativeTo: this.route} );
@@ -63,7 +69,7 @@ export class HeaderComponent implements OnInit {
 
   openProfilePage() {
     this.router.navigateByUrl('/profile');
-    this.pressed = '';
+    // this.pressed = '';
   }
 
   signOut() {
@@ -74,7 +80,7 @@ export class HeaderComponent implements OnInit {
   /////////////////////////////////////////////////////////////
 
   activateButton(title) {
-    this.pressed = title;
+    // this.pressed = title;
   }
 
 }
