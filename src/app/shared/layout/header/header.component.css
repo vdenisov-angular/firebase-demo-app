@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  height: 40px;
 }
 
 .project-name {
@@ -15,11 +16,22 @@ button {
 }
 
 .active {
-  background-color: #8C98DA;
-  height: 70px;
-  color: #FFB570;
+  /* background-color: #8C98DA; */
+  color: yellow;
 }
 
 .extra {
   color: black;
+}
+
+ul li {
+  display: inline;
+}
+
+.button-label {
+  font-size: 25px;
+}
+
+.mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
+  background-color: #ffffff!important;
 }

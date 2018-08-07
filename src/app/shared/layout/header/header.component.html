@@ -7,21 +7,70 @@
   <div class="toolbar-buttons">
 
     <div *ngIf="!authorized">
+
+      <nav mat-tab-nav-bar [color]="accent">
+        <a mat-tab-link class="button-label"
+        *ngFor="let link of navLinks"
+          [routerLink]="link.path"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact: true}"
+          #rla="routerLinkActive"
+          [active]="rla.isActive">
+        {{link.label}}
+        </a>
+      </nav>
+
   
-      <button mat-button (click)="openHomePage()"
+      <!-- <ul>
+
+        <li
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact: true}">
+          <a routerLink="/">
+            <button mat-button (click)="openHomePage()">
+              Home
+            </button>
+          </a>
+        </li>
+
+        <li
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact: true}">
+          <a routerLink="/auth/login">
+            <button mat-button (click)="signIn()">
+              Sign In
+            </button>
+          </a>
+        </li>
+
+        <li
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact: true}">
+          <a routerLink="/auth/register">
+            <button mat-button (click)="signUp()">
+              Sign Up
+            </button>
+          </a>
+        </li>
+
+      </ul> -->
+  
+
+
+      <!-- <button mat-button (click)="openHomePage()"
         [ngClass]="{'active': pressed === 'Home'}">
           Home
-      </button>
+      </button> -->
 
-      <button mat-button (click)="signIn()"
+      <!-- <button mat-button (click)="signIn()"
         [ngClass]="{'active': pressed === 'Sign In'}">
           Sign In
-      </button>
+      </button> -->
 
-      <button mat-button (click)="signUp()"
+      <!-- <button mat-button (click)="signUp()"
         [ngClass]="{'active': pressed === 'Sign Up'}">
           Sign Up
-      </button>
+      </button> -->
       
     </div>
 
