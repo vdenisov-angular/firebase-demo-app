@@ -12,7 +12,7 @@ import { AuthService } from './../core/services';
 })
 export class AuthComponent implements OnInit, OnDestroy {
 
-  public authorized = this.authService.checkAuth();
+  public authorized;
   private authSubscription;
 
   public authType = undefined;
