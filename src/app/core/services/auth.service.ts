@@ -16,7 +16,7 @@ export class AuthService {
 
   public user: firebase.User;
 
-  public failureError = undefined;
+  public isAuth;
 
   constructor(
     // private apiService: ApiService,
@@ -26,15 +26,38 @@ export class AuthService {
     // this.afAuth.authState.subscribe(
     //   user => this.user = user
     // );
+
     this.afAuth.authState.subscribe(
       user => {
         this.user = user;
       }
     );
+
+    this.authValue
+      .subscribe((nextValue) => {
+        this.isAuth = nextValue;
+      });
   }
 
   public checkAuth() {
     // return this.localStorageService.read('auth') || false;
+    return new Promise((resolve, reject) => {
+      try {
+        resolve(this.isAuth);
+      } catch (err) {
+        console.log('ERROR ---> auth.service');
+        console.log(err);
+        reject(err);
+      }
+    });
+  }
+
+  public checkAll() {
+    return {
+      'authValue': this.authValue,
+      'user': this.user,
+      'isAuth': this.isAuth
+    };
   }
 
   public signUp(data) {
@@ -60,18 +83,19 @@ export class AuthService {
     // this.authValue.next(true);
     // this.localStorageService.write('auth', true);
 
-    this.afAuth.auth
+    return this.afAuth.auth
       .signInWithEmailAndPassword(data.email, data.password)
-      .then(user => {
-        if (user) {
+      .then(response => {
+        this.user = response.user;
+        if (this.user) {
           this.authValue.next(true);
-          this.user = user.user;
+          console.log('user => ', this.user);
         } else {
           this.authValue.next(false);
+          console.log('no user !');
         }
       })
-      .catch(error => this.failureError = error);
-    return this.failureError;
+      .catch(this.handleError);
   }
 
   public signOut() {
@@ -88,15 +112,7 @@ export class AuthService {
   }
 
   public handleError(error: any) {
-    this.failureError = error.message || error;
-    // console.log('error.message -> ', error.message);
-    // console.log('error -> ', error);
-    // this.failureError = error.message || error;
-    // console.log('this.failureError -> ', this.failureError);
-  }
-
-  public findСauseOfFailure() {
-    return this.failureError;
+    console.log('\n\n!!! ERROR !!!\n\n', error.message || error);
   }
 
 }

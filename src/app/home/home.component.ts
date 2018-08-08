@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() { }
 
   openNewPage(path) {
+    console.log('jump to ->', path);
     this.router.navigateByUrl(path);
   }
 

@@ -52,44 +52,22 @@ export class AuthComponent implements OnInit, OnDestroy {
     this.isSubmitting = true;
     const credentials = this.authForm.value;
     console.log('credentials -> ', credentials);
-    let result = null;
 
-    switch (this.authType) {
-      case 'login':
-        result = this.authService.signIn(credentials);
-        break;
-      case 'register':
-        result = this.authService.signUp(credentials);
-        break;
-    }
-
-    console.log('\nresult -> ',
-      result || '\n\n!!! PRESS "Sign in" BUTTON AGAIN !!!' +
-      '\n\nAND LOOK TO RESULT');
-
-    if (this.authorized) {
-      this.router.navigateByUrl('/');
+    if (this.authType === 'login') {
+      this.authService.signIn(credentials)
+        .then( () => this.router.navigateByUrl('/') );
     } else {
-      console.log('Unauthorized');
+      this.authService.signUp(credentials)
+        .then( () => this.router.navigateByUrl('/') );
     }
 
+    console.log('this.authorized -> ', this.authorized);
+    console.log('checkAll -> ', this.authService.checkAll());
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  public handleError(error: any) {
+    console.log('\n\n!!! ERROR !!!\n\n', error.message || error);
+  }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
