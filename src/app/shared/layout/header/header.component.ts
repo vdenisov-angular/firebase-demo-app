@@ -17,10 +17,15 @@ export class HeaderComponent implements OnInit {
 
   private authSubscription;
 
-  public navLinks = [
+  public notAuthLinks = [
     { path: '/', label: 'Home' },
     { path: '/auth/login', label: 'Sign In' },
     { path: '/auth/register', label: 'Sign Up' },
+  ];
+
+  public authLinks = [
+    { path: '/', label: 'Home' },
+    { path: '/todos', label: 'Todos' },
   ];
 
   constructor(

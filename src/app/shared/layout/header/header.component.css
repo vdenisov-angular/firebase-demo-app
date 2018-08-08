@@ -35,3 +35,7 @@ ul li {
 .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
   background-color: #ffffff!important;
 }
+
+.extraMenu {
+  margin-left: 40px;
+}

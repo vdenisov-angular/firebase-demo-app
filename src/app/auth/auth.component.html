@@ -20,19 +20,21 @@
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <input matInput type="text"
+          <input matInput type="text" value="admin@gmail.com"
             formControlName="email" placeholder="Email"/>
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <input matInput type="password"
+          <input matInput type="password"  value="qwerty123"
             formControlName="password" placeholder="Password"/>
         </mat-form-field>
 
         <button mat-button class="button-submit"
-          [disabled]="!authForm.valid" type="submit">
+          [disabled]="false" type="submit">
             {{ title }}
         </button>
+
+        <!-- !authForm.valid -->
 
       </form>
 
