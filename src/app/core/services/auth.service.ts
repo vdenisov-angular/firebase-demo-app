@@ -68,10 +68,8 @@ export class AuthService {
         this.user = response.user;
         if (this.user) {
           this.authValue.next(true);
-          // console.log('user => ', this.user);
         } else {
           this.authValue.next(false);
-          // console.log('no user !');
         }
       })
       .catch(this.handleError);
