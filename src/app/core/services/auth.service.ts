@@ -18,20 +18,12 @@ export class AuthService {
 
   public isAuth;
 
-  constructor(
-    // private apiService: ApiService,
-    private localStorageService: LocalStorageService,
-    public afAuth: AngularFireAuth
-  ) {
+  constructor(public afAuth: AngularFireAuth) {
     // this.afAuth.authState.subscribe(
-    //   user => this.user = user
+    //   user => {
+    //     this.user = user;
+    //   }
     // );
-
-    this.afAuth.authState.subscribe(
-      user => {
-        this.user = user;
-      }
-    );
 
     this.authValue
       .subscribe((nextValue) => {
@@ -39,30 +31,19 @@ export class AuthService {
       });
   }
 
-  public checkAuth() {
-    // return this.localStorageService.read('auth') || false;
+  public checkUserAuth() {
     return new Promise((resolve, reject) => {
       try {
-        resolve(this.isAuth);
+        firebase.auth().onAuthStateChanged(user => {
+          resolve(user ? true : false);
+        });
       } catch (err) {
-        console.log('ERROR ---> auth.service');
-        console.log(err);
-        reject(err);
+          reject(err);
       }
     });
   }
 
-  public checkAll() {
-    return {
-      'authValue': this.authValue,
-      'user': this.user,
-      'isAuth': this.isAuth
-    };
-  }
-
   public signUp(data) {
-    // console.log('sign up ->', data);
-    // this.authValue.next(true);
     // this.localStorageService.write('auth', true);
 
     return this.afAuth.auth
@@ -79,8 +60,6 @@ export class AuthService {
   }
 
   public signIn(data) {
-    // console.log('sign in ->', data);
-    // this.authValue.next(true);
     // this.localStorageService.write('auth', true);
 
     return this.afAuth.auth
@@ -89,25 +68,18 @@ export class AuthService {
         this.user = response.user;
         if (this.user) {
           this.authValue.next(true);
-          console.log('user => ', this.user);
         } else {
           this.authValue.next(false);
-          console.log('no user !');
         }
       })
       .catch(this.handleError);
   }
 
   public signOut() {
-    // console.log('sign out');
-    // this.authValue.next(false);
     // this.localStorageService.write('auth', false);
 
     return this.afAuth.auth.signOut()
-      .then((user) => {
-        this.authValue.next(false);
-        console.log('user logged out:', user);
-      })
+      .then(() => this.authValue.next(false))
       .catch(this.handleError);
   }
 

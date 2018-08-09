@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material';
 
@@ -13,9 +13,6 @@ import { AuthService } from '../../../core/services';
 export class HeaderComponent implements OnInit {
 
   public authorized;
-  // public pressed = 'Home';
-
-  private authSubscription;
 
   public notAuthLinks = [
     { path: '/', label: 'Home' },
@@ -33,59 +30,48 @@ export class HeaderComponent implements OnInit {
     private route: ActivatedRoute,
     private authService: AuthService,
     public dialog: MatDialog,
-  ) { }
-
-  ngOnInit() {
-    this.authSubscription = this.authService.authValue
+  ) {
+    this.authService.authValue
       .subscribe((nextValue) => {
         this.authorized = nextValue;
       });
   }
 
+  ngOnInit() {
+    this.authService.checkUserAuth()
+      .then(auth => {
+        this.authorized = auth;
+        console.log('checkUserAuth() ->', auth);
+      });
+  }
+
   openHomePage() {
-    // this.activateButton('Home');
     this.router.navigateByUrl('/');
-    // this.router.navigate(['/']);
-    // this.router.navigate( ['/'], {relativeTo: this.route} );
   }
 
   ////////////////// IF NOT AUTHORIZED //////////////////////////
 
   signIn() {
-    this.activateButton('Sign In');
     this.router.navigateByUrl('/auth/login');
   }
 
   signUp() {
-    this.activateButton('Sign Up');
     this.router.navigateByUrl('/auth/register');
   }
 
   ////////////////// IF AUTHORIZED //////////////////////////
 
   openTodosPage() {
-    this.activateButton('Todos');
     this.router.navigateByUrl('/todos');
-  }
-
-  userActions() {
-    //
   }
 
   openProfilePage() {
     this.router.navigateByUrl('/profile');
-    // this.pressed = '';
   }
 
   signOut() {
     this.authService.signOut();
     this.openHomePage();
-  }
-
-  /////////////////////////////////////////////////////////////
-
-  activateButton(title) {
-    // this.pressed = title;
   }
 
 }
