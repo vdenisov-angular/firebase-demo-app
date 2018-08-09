@@ -17,10 +17,9 @@ export class AuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
 
-      return this.authService.checkAuth().then((isLoggedIn: boolean) => {
-        console.log('isLoggedIn --->', isLoggedIn);
+      return this.authService.checkUserAuth().then((isLoggedIn: boolean) => {
         if (isLoggedIn) {
-          console.log('Welcome to this route !!!');
+          console.log('Welcome to protected route !!!');
           return true;
         } else {
           console.log('Route is not available :(');

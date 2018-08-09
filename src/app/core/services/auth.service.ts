@@ -18,16 +18,12 @@ export class AuthService {
 
   public isAuth;
 
-  constructor(
-    // private apiService: ApiService,
-    private localStorageService: LocalStorageService,
-    public afAuth: AngularFireAuth
-  ) {
-    this.afAuth.authState.subscribe(
-      user => {
-        this.user = user;
-      }
-    );
+  constructor(public afAuth: AngularFireAuth) {
+    // this.afAuth.authState.subscribe(
+    //   user => {
+    //     this.user = user;
+    //   }
+    // );
 
     this.authValue
       .subscribe((nextValue) => {
@@ -35,25 +31,16 @@ export class AuthService {
       });
   }
 
-  public checkAuth() {
-    // return this.localStorageService.read('auth') || false;
+  public checkUserAuth() {
     return new Promise((resolve, reject) => {
       try {
-        resolve(this.isAuth);
+        firebase.auth().onAuthStateChanged(user => {
+          resolve(user ? true : false);
+        });
       } catch (err) {
-        console.log('ERROR ---> auth.service');
-        console.log(err);
-        reject(err);
+          reject(err);
       }
     });
-  }
-
-  public checkAll() {
-    return {
-      'authValue': this.authValue,
-      'user': this.user,
-      'isAuth': this.isAuth
-    };
   }
 
   public signUp(data) {
@@ -94,10 +81,7 @@ export class AuthService {
     // this.localStorageService.write('auth', false);
 
     return this.afAuth.auth.signOut()
-      .then((user) => {
-        this.authValue.next(false);
-        console.log('user logged out:', user);
-      })
+      .then(() => this.authValue.next(false))
       .catch(this.handleError);
   }
 
