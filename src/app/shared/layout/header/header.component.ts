@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material';
 
@@ -38,9 +38,11 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.authService.checkAuth().then((isLoggedIn: boolean) => {
-      this.authorized = isLoggedIn;
-    });
+    this.authService.checkUserAuth()
+      .then(auth => {
+        this.authorized = auth;
+        console.log('checkUserAuth() ->', auth);
+      });
   }
 
   openHomePage() {

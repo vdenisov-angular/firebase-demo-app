@@ -1,5 +1,5 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Router, Event, NavigationEnd } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { AuthService } from './../core/services';
@@ -10,10 +10,9 @@ import { AuthService } from './../core/services';
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.css']
 })
-export class AuthComponent implements OnInit, OnDestroy {
+export class AuthComponent implements OnInit {
 
   public authorized;
-  private authSubscription;
 
   public authType = undefined;
   public title = undefined;
@@ -42,10 +41,6 @@ export class AuthComponent implements OnInit, OnDestroy {
         this.authForm.addControl('username', new FormControl());
       }
     });
-    this.authSubscription = this.authService.authValue
-      .subscribe((nextValue) => {
-        this.authorized = nextValue;
-      });
   }
 
   submitForm() {
@@ -60,17 +55,10 @@ export class AuthComponent implements OnInit, OnDestroy {
       this.authService.signUp(credentials)
         .then( () => this.router.navigateByUrl('/') );
     }
-
-    console.log('this.authorized -> ', this.authorized);
-    console.log('checkAll -> ', this.authService.checkAll());
   }
 
   public handleError(error: any) {
     console.log('\n\n!!! ERROR !!!\n\n', error.message || error);
-  }
-
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
   }
 
 }
