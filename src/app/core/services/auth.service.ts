@@ -23,10 +23,6 @@ export class AuthService {
     private localStorageService: LocalStorageService,
     public afAuth: AngularFireAuth
   ) {
-    // this.afAuth.authState.subscribe(
-    //   user => this.user = user
-    // );
-
     this.afAuth.authState.subscribe(
       user => {
         this.user = user;
@@ -61,8 +57,6 @@ export class AuthService {
   }
 
   public signUp(data) {
-    // console.log('sign up ->', data);
-    // this.authValue.next(true);
     // this.localStorageService.write('auth', true);
 
     return this.afAuth.auth
@@ -79,8 +73,6 @@ export class AuthService {
   }
 
   public signIn(data) {
-    // console.log('sign in ->', data);
-    // this.authValue.next(true);
     // this.localStorageService.write('auth', true);
 
     return this.afAuth.auth
@@ -89,18 +81,16 @@ export class AuthService {
         this.user = response.user;
         if (this.user) {
           this.authValue.next(true);
-          console.log('user => ', this.user);
+          // console.log('user => ', this.user);
         } else {
           this.authValue.next(false);
-          console.log('no user !');
+          // console.log('no user !');
         }
       })
       .catch(this.handleError);
   }
 
   public signOut() {
-    // console.log('sign out');
-    // this.authValue.next(false);
     // this.localStorageService.write('auth', false);
 
     return this.afAuth.auth.signOut()
