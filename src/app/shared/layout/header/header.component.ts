@@ -12,7 +12,7 @@ import { AuthService } from '../../../core/services';
 })
 export class HeaderComponent implements OnInit {
 
-  @Input() public authorized: boolean;
+  @Input() public authorized;
 
   public notAuthLinks = [
     { path: '/', label: 'Home' },
