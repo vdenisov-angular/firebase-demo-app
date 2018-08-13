@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
   CanActivate,
-  RouterStateSnapshot
+  RouterStateSnapshot,
+  Router
 } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
@@ -11,7 +12,10 @@ import { AuthService } from './auth.service';
 @Injectable()
 export class AuthGuard implements CanActivate {
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -23,6 +27,7 @@ export class AuthGuard implements CanActivate {
           return true;
         } else {
           console.log('Route is not available :(');
+          this.router.navigateByUrl('/');
           return false;
         }
       });
