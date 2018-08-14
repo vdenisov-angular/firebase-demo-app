@@ -21,7 +21,7 @@ export class HeaderComponent implements OnInit {
   ];
 
   public authLinks = [
-    { path: '/', label: 'Home' },
+    { path: '/', label: 'Home', isActive: true },
     { path: '/todos', label: 'Todos' },
   ];
 
