@@ -6,52 +6,52 @@
 
   <div class="toolbar-buttons">
 
-    <div *ngIf="!authorized">
-  
-      <button mat-button (click)="openHomePage()"
-        [ngClass]="{'active': pressed === 'Home'}">
-          Home
-      </button>
-
-      <button mat-button (click)="signIn()"
-        [ngClass]="{'active': pressed === 'Sign In'}">
-          Sign In
-      </button>
-
-      <button mat-button (click)="signUp()"
-        [ngClass]="{'active': pressed === 'Sign Up'}">
-          Sign Up
-      </button>
-      
+    <div *ngIf="authorized === null">
+      Loading...
     </div>
 
-    <div *ngIf="authorized">
+    <div *ngIf="authorized === false">
 
-      <button mat-button (click)="openHomePage()"
-        [ngClass]="{'active': pressed === 'Home'}">
-          Home
-      </button>
+      <nav mat-tab-nav-bar>
+        <a mat-tab-link class="button-label"
+        *ngFor="let link of notAuthLinks"
+          [routerLink]="link.path"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact: true}"
+          #rla="routerLinkActive"
+          [active]="link.isActive">
+            {{link.label}}
+        </a>
+      </nav>
 
-      <button mat-button (click)="openTodosPage()"
-        [ngClass]="{'active': pressed === 'Todos'}">
-          Todos
-      </button>
+    </div>
 
-      <button mat-icon-button [matMenuTriggerFor]="menu"
-        (click)="userActions()">
-          <mat-icon>account_circle</mat-icon>
-      </button>
-      
+    <div *ngIf="authorized === true">
+
+      <nav mat-tab-nav-bar>
+        <a mat-tab-link class="button-label"
+        *ngFor="let link of authLinks"
+          [routerLink]="link.path"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact: true}"
+          #rla="routerLinkActive"
+          [active]="rla.isActive">
+            {{link.label}}
+        </a>
+
+        <button mat-icon-button class="extraMenu"
+          [matMenuTriggerFor]="menu">
+          <mat-icon class="icon-size">account_circle</mat-icon>
+        </button>
+      </nav>
+
       <mat-menu #menu="matMenu">
-        
         <button mat-menu-item class="extra" (click)="openProfilePage()">
           Profile
         </button>
-        
         <button mat-menu-item class="extra" (click)="signOut()">
-          Sign Out
+          Exit
         </button>
-      
       </mat-menu>
 
     </div>
@@ -59,4 +59,3 @@
   </div>
 
 </mat-toolbar>
-

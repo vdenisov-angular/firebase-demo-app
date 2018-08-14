@@ -1,7 +1,20 @@
+.mat-tab-group.mat-primary .mat-ink-bar,
+.mat-tab-nav-bar.mat-primary .mat-ink-bar {
+  background-color: #ffffff!important;
+}
+
+/* .mat-toolbar.mat-primary {
+  background: #000c4c;
+  color: #fff;
+} */
+
+/* ################################################## */
+
 .toolbar-area {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  height: 40px;
 }
 
 .project-name {
@@ -10,16 +23,55 @@
 }
 
 button {
-  font-size: 20px;
-  color: #FFED70;
+  font-size: 25px;
 }
 
 .active {
-  background-color: #8C98DA;
-  height: 70px;
-  color: #FFB570;
+  color: yellow;
 }
 
 .extra {
   color: black;
+  font-size: 20px;
+}
+
+a.extra :hover {
+  background-color: #bebbeb;
+  font-weight: bold;
+}
+
+ul li {
+  display: inline;
+}
+
+.button-label {
+  font-size: 25px;
+}
+
+.extraMenu {
+  margin-left: 40px;
+}
+
+.icon-size {
+  font-size: 33px!important;
+}
+
+mat-icon :hover {
+  color: yellow;
+}
+
+/* ################################################## */
+
+a {
+  color: white;
+  font-weight: bold;
+
+}
+
+a:hover {
+  font-size: 30px;
+}
+
+a:active {
+  font-size: 15px;
 }

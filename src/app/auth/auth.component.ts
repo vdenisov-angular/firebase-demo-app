@@ -1,5 +1,5 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Router, Event, NavigationEnd } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { AuthService } from './../core/services';
@@ -10,7 +10,9 @@ import { AuthService } from './../core/services';
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.css']
 })
-export class AuthComponent implements OnInit, OnDestroy {
+export class AuthComponent implements OnInit {
+
+  public authorized;
 
   public authType = undefined;
   public title = undefined;
@@ -44,27 +46,19 @@ export class AuthComponent implements OnInit, OnDestroy {
   submitForm() {
     this.isSubmitting = true;
     const credentials = this.authForm.value;
-    let result;
+    console.log('credentials -> ', credentials);
 
-    switch (this.authType) {
-      case 'login':
-        result = this.authService.signIn(credentials);
-        break;
-      case 'register':
-        result = this.authService.signUp(credentials);
-        break;
-    }
-
-    if (result === true) {
-      this.router.navigateByUrl('/');
-    }
-    if (result.error) {
-      console.log('error -> FUCK');
+    if (this.authType === 'login') {
+      this.authService.signIn(credentials)
+        .then( () => this.router.navigateByUrl('/') );
+    } else {
+      this.authService.signUp(credentials)
+        .then( () => this.router.navigateByUrl('/') );
     }
   }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
+  public handleError(error: any) {
+    console.log('\n\n!!! ERROR !!!\n\n', error.message || error);
   }
 
 }

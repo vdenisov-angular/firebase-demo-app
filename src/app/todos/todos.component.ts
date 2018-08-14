@@ -21,18 +21,11 @@ export class TodosComponent implements OnInit {
         map(changes =>
           changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
         )
-    )
-    .subscribe(data => {
-      this.todos = data;
-      console.log('todos = ', this.todos);
-    });
-    // this.todosService.getAllTodos()
-    //   .subscribe(data => {
-    //     this.todos = data;
-    //     console.log('todos = ', this.todos);
-    //     console.log('todos[0].$key = ', this.todos[0].$key);
-    //     console.log('todos[0].key = ', this.todos[0].key);
-    // });
+      )
+      .subscribe(data => {
+        this.todos = data;
+        console.log('todos = ', this.todos);
+      });
   }
 
   public addTodo(todo) {
@@ -47,9 +40,6 @@ export class TodosComponent implements OnInit {
 
   public deleteTodo(todo) {
     this.todosService.deleteOneTodo(todo);
-      // .subscribe(data => {
-      //   this.todos = this.todos.filter(el => el.id !== todo.id);
-      // });
   }
 
 }

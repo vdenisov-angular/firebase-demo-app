@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 
 import { AuthService } from '../../../core/services';
@@ -12,69 +12,62 @@ import { AuthService } from '../../../core/services';
 })
 export class HeaderComponent implements OnInit {
 
-  public authorized = this.authService.checkAuth();
-  public pressed = 'Home';
+  @Input() public authorized;
 
-  private authSubscription;
+  public notAuthLinks = [
+    { path: '/', label: 'Home' },
+    { path: '/auth/login', label: 'Sign In' },
+    { path: '/auth/register', label: 'Sign Up' },
+  ];
+
+  public authLinks = [
+    { path: '/', label: 'Home', isActive: true },
+    { path: '/todos', label: 'Todos' },
+  ];
 
   constructor(
     private router: Router,
-    private route: ActivatedRoute,
     private authService: AuthService,
     public dialog: MatDialog,
-  ) { }
-
-  ngOnInit() {
-    this.authSubscription = this.authService.authValue
+  ) {
+    this.authService.authValue
       .subscribe((nextValue) => {
         this.authorized = nextValue;
       });
   }
 
+  ngOnInit() {
+    this.authService.checkUserAuth()
+      .then(auth => this.authorized = auth);
+  }
+
   openHomePage() {
-    this.activateButton('Home');
     this.router.navigateByUrl('/');
-    // this.router.navigate(['/']);
-    // this.router.navigate( ['/'], {relativeTo: this.route} );
   }
 
   ////////////////// IF NOT AUTHORIZED //////////////////////////
 
   signIn() {
-    this.activateButton('Sign In');
     this.router.navigateByUrl('/auth/login');
   }
 
   signUp() {
-    this.activateButton('Sign Up');
     this.router.navigateByUrl('/auth/register');
   }
 
   ////////////////// IF AUTHORIZED //////////////////////////
 
   openTodosPage() {
-    this.activateButton('Todos');
     this.router.navigateByUrl('/todos');
-  }
-
-  userActions() {
-    //
   }
 
   openProfilePage() {
     this.router.navigateByUrl('/profile');
-    this.pressed = '';
   }
 
   signOut() {
     this.authService.signOut();
     this.openHomePage();
-  }
-
-  /////////////////////////////////////////////////////////////
-
-  activateButton(title) {
-    this.pressed = title;
   }
 
 }
