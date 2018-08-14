@@ -6,46 +6,37 @@ import { LocalStorageService } from './local-storage.service';
 
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
-import { auth } from 'firebase';
+
+import { map } from 'rxjs/operators';
 
 
 @Injectable()
 export class AuthService {
 
   public authValue = new Subject();
-
   public user: firebase.User;
 
-  public isAuth;
+  public authenticated$: Observable<boolean>;
+  public uid$: Observable<string>;
 
   constructor(public afAuth: AngularFireAuth) {
-    // this.afAuth.authState.subscribe(
-    //   user => {
-    //     this.user = user;
-    //   }
-    // );
-
-    this.authValue
-      .subscribe((nextValue) => {
-        this.isAuth = nextValue;
-      });
+    this.authenticated$ = afAuth.authState.pipe(map(user => !!user));
+    this.uid$ = afAuth.authState.pipe(map(user => user.uid));
   }
 
   public checkUserAuth() {
+
+    // return this.authenticated$.toPromise();
+
     return new Promise((resolve, reject) => {
-      try {
-        firebase.auth().onAuthStateChanged(user => {
-          resolve(user ? true : false);
-        });
-      } catch (err) {
-          reject(err);
-      }
+      this.authenticated$.subscribe(isAuth => resolve(isAuth));
     });
+
+    // firebase.auth().onAuthStateChanged(user => resolve(user ? true : false));
+
   }
 
   public signUp(data) {
-    // this.localStorageService.write('auth', true);
-
     return this.afAuth.auth
       .createUserWithEmailAndPassword(data.email, data.password)
       .then(user => {
@@ -60,8 +51,6 @@ export class AuthService {
   }
 
   public signIn(data) {
-    // this.localStorageService.write('auth', true);
-
     return this.afAuth.auth
       .signInWithEmailAndPassword(data.email, data.password)
       .then(response => {
@@ -76,8 +65,6 @@ export class AuthService {
   }
 
   public signOut() {
-    // this.localStorageService.write('auth', false);
-
     return this.afAuth.auth.signOut()
       .then(() => this.authValue.next(false))
       .catch(this.handleError);
