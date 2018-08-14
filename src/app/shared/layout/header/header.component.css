@@ -1,3 +1,15 @@
+.mat-tab-group.mat-primary .mat-ink-bar,
+.mat-tab-nav-bar.mat-primary .mat-ink-bar {
+  background-color: #ffffff!important;
+}
+
+/* .mat-toolbar.mat-primary {
+  background: #000c4c;
+  color: #fff;
+} */
+
+/* ################################################## */
+
 .toolbar-area {
   display: flex;
   flex-direction: row;
@@ -11,17 +23,21 @@
 }
 
 button {
-  font-size: 20px;
-  color: #FFED70;
+  font-size: 25px;
 }
 
 .active {
-  /* background-color: #8C98DA; */
   color: yellow;
 }
 
 .extra {
   color: black;
+  font-size: 20px;
+}
+
+a.extra :hover {
+  background-color: #bebbeb;
+  font-weight: bold;
 }
 
 ul li {
@@ -32,10 +48,30 @@ ul li {
   font-size: 25px;
 }
 
-.mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
-  background-color: #ffffff!important;
-}
-
 .extraMenu {
   margin-left: 40px;
+}
+
+.icon-size {
+  font-size: 33px!important;
+}
+
+mat-icon :hover {
+  color: yellow;
+}
+
+/* ################################################## */
+
+a {
+  color: white;
+  font-weight: bold;
+
+}
+
+a:hover {
+  font-size: 30px;
+}
+
+a:active {
+  font-size: 15px;
 }
