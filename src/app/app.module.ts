@@ -14,6 +14,7 @@ import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 
 import { environment } from '../environments/environment';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { environment } from '../environments/environment';
     AppComponent,
     HomeComponent,
     ProfileComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

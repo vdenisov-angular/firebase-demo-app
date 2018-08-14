@@ -6,42 +6,37 @@ import { LocalStorageService } from './local-storage.service';
 
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
-import { auth } from 'firebase';
+
+import { map } from 'rxjs/operators';
 
 
 @Injectable()
 export class AuthService {
 
   public authValue = new Subject();
-
   public user: firebase.User;
 
-  public failureError = undefined;
+  public authenticated$: Observable<boolean>;
+  public uid$: Observable<string>;
 
-  constructor(
-    // private apiService: ApiService,
-    private localStorageService: LocalStorageService,
-    public afAuth: AngularFireAuth
-  ) {
-    // this.afAuth.authState.subscribe(
-    //   user => this.user = user
-    // );
-    this.afAuth.authState.subscribe(
-      user => {
-        this.user = user;
-      }
-    );
+  constructor(public afAuth: AngularFireAuth) {
+    this.authenticated$ = afAuth.authState.pipe(map(user => !!user));
+    this.uid$ = afAuth.authState.pipe(map(user => user.uid));
   }
 
-  public checkAuth() {
-    return this.localStorageService.read('auth') || false;
+  public checkUserAuth() {
+
+    // return this.authenticated$.toPromise();
+
+    return new Promise((resolve, reject) => {
+      this.authenticated$.subscribe(isAuth => resolve(isAuth));
+    });
+
+    // firebase.auth().onAuthStateChanged(user => resolve(user ? true : false));
+
   }
 
   public signUp(data) {
-    // console.log('sign up ->', data);
-    // this.authValue.next(true);
-    // this.localStorageService.write('auth', true);
-
     return this.afAuth.auth
       .createUserWithEmailAndPassword(data.email, data.password)
       .then(user => {
@@ -56,47 +51,27 @@ export class AuthService {
   }
 
   public signIn(data) {
-    // console.log('sign in ->', data);
-    // this.authValue.next(true);
-    // this.localStorageService.write('auth', true);
-
-    this.afAuth.auth
+    return this.afAuth.auth
       .signInWithEmailAndPassword(data.email, data.password)
-      .then(user => {
-        if (user) {
+      .then(response => {
+        this.user = response.user;
+        if (this.user) {
           this.authValue.next(true);
-          this.user = user.user;
         } else {
           this.authValue.next(false);
         }
       })
-      .catch(error => this.failureError = error);
-    return this.failureError;
+      .catch(this.handleError);
   }
 
   public signOut() {
-    // console.log('sign out');
-    // this.authValue.next(false);
-    // this.localStorageService.write('auth', false);
-
     return this.afAuth.auth.signOut()
-      .then((user) => {
-        this.authValue.next(false);
-        console.log('user logged out:', user);
-      })
+      .then(() => this.authValue.next(false))
       .catch(this.handleError);
   }
 
   public handleError(error: any) {
-    this.failureError = error.message || error;
-    // console.log('error.message -> ', error.message);
-    // console.log('error -> ', error);
-    // this.failureError = error.message || error;
-    // console.log('this.failureError -> ', this.failureError);
-  }
-
-  public findСauseOfFailure() {
-    return this.failureError;
+    console.log('\n\n!!! ERROR !!!\n\n', error.message || error);
   }
 
 }

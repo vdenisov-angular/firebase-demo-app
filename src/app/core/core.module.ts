@@ -6,6 +6,7 @@ import {
   TodosService,
   UserService,
   AuthService,
+  AuthGuard,
 } from './services';
 
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -21,6 +22,7 @@ export class CoreModule {
         TodosService,
         UserService,
         AuthService,
+        AuthGuard,
 
         AngularFireAuth,
       ]
