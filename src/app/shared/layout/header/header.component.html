@@ -6,7 +6,11 @@
 
   <div class="toolbar-buttons">
 
-    <div *ngIf="!authorized">
+    <div *ngIf="authorized === null">
+      Loading...
+    </div>
+
+    <div *ngIf="authorized === false">
 
       <nav mat-tab-nav-bar>
         <a mat-tab-link class="button-label"
@@ -22,7 +26,7 @@
 
     </div>
 
-    <div *ngIf="authorized">
+    <div *ngIf="authorized === true">
 
       <nav mat-tab-nav-bar>
         <a mat-tab-link class="button-label"
