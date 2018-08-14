@@ -6,7 +6,11 @@
 
   <div class="toolbar-buttons">
 
-    <div *ngIf="!authorized">
+    <div *ngIf="authorized === null">
+      Loading...
+    </div>
+
+    <div *ngIf="authorized === false">
 
       <nav mat-tab-nav-bar>
         <a mat-tab-link class="button-label"
@@ -15,14 +19,14 @@
           routerLinkActive="active"
           [routerLinkActiveOptions]="{exact: true}"
           #rla="routerLinkActive"
-          [active]="rla.isActive">
-        {{link.label}}
+          [active]="link.isActive">
+            {{link.label}}
         </a>
       </nav>
 
     </div>
 
-    <div *ngIf="authorized">
+    <div *ngIf="authorized === true">
 
       <nav mat-tab-nav-bar>
         <a mat-tab-link class="button-label"
@@ -32,12 +36,12 @@
           [routerLinkActiveOptions]="{exact: true}"
           #rla="routerLinkActive"
           [active]="rla.isActive">
-        {{link.label}}
+            {{link.label}}
         </a>
 
         <button mat-icon-button class="extraMenu"
           [matMenuTriggerFor]="menu">
-          <mat-icon>account_circle</mat-icon>
+          <mat-icon class="icon-size">account_circle</mat-icon>
         </button>
       </nav>
 
@@ -46,7 +50,7 @@
           Profile
         </button>
         <button mat-menu-item class="extra" (click)="signOut()">
-          Sign Out
+          Exit
         </button>
       </mat-menu>
 
