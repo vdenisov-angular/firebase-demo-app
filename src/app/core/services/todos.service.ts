@@ -7,7 +7,7 @@ import {
 } from 'angularfire2/database';
 import { AuthService } from './auth.service';
 
-import { Todo } from '../../todos/todo.type';
+import { Todo } from './../../todos/todo.type';
 
 
 @Injectable()
@@ -28,25 +28,26 @@ export class TodosService {
     const query = this.fireDB.list('/todos',
       ref => ref.orderByChild('uid').equalTo(uid)
     );
-    return query;
+    return query.valueChanges();
     // return this.apiService.get('todos');
   }
 
   public createOneTodo(uid, title) {
+    const pushId = this.fireDB.createPushId();
     const todo = new Todo(uid, title);
-    console.log('new todo -> ', todo);
-    this.todosRef.push(todo);
-    // return this.apiService.post('todos', todo);
+
+    const element = { ...todo, id: pushId };
+    this.todosRef.set(element.id, element);
   }
 
-  public toggleTodo(todo: Todo) {
+  public toggleTodo(todo) {
     todo.isCompleted = !todo.isCompleted;
     this.todosRef.update(todo.key, todo);
     // return this.apiService.put('todos', todo);
   }
 
-  public deleteOneTodo(todo: Todo) {
-    this.todosRef.remove(todo.key);
+  public deleteOneTodo(todo) {
+    this.todosRef.remove(todo.id);
     // return this.apiService.delete('todos', todo);
   }
 

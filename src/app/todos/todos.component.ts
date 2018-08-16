@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { TodosService, AuthService } from './../core/services';
-
-import { map } from 'rxjs/operators';
 import { Todo } from './todo.type';
 
 
@@ -30,15 +28,9 @@ export class TodosComponent implements OnInit {
 
   ngOnInit() {
     this.todosService.getAllTodos(this.user.uid)
-      // .valueChanges()
-      .snapshotChanges()
-      .pipe(
-        map(changes =>
-          changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
-        )
-      )
       .subscribe(data => {
         this.todos = data;
+        console.log('uid = ', this.user.uid);
         console.log('todos = ', this.todos);
       });
   }
