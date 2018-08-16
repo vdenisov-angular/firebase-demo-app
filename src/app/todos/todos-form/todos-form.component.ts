@@ -17,12 +17,8 @@ export class TodosFormComponent implements OnInit {
 
   public onAdd() {
     if (this.newTodo.length) {
-      const todo = {
-        title: this.newTodo,
-        isCompleted: false
-      };
+      this.addEvent.emit(this.newTodo);
       this.newTodo = '';
-      this.addEvent.emit(todo);
     }
   }
 

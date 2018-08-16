@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { TodosService, AuthService } from './../core/services';
+
 import { map } from 'rxjs/operators';
+import { Todo } from './todo.type';
+
 
 @Component({
   selector: 'app-todos',
@@ -10,43 +13,45 @@ import { map } from 'rxjs/operators';
 export class TodosComponent implements OnInit {
 
   public todos = [];
-  public uid;
+  public user;
 
   constructor(
     private todosService: TodosService,
     private authService: AuthService
   ) {
-    this.authService.getUser().then(user => {
-      this.uid = user.uid;
-      console.log('user uid = ', this.uid);
-    });
+    // this.authService.getUser().then(user => {
+    //   this.uid = user.uid;
+    //   console.log('user uid = ', this.uid);
+    // });
+    this.authService.userSub$.subscribe(user => {
+      this.user = user;
+    })
   }
 
   ngOnInit() {
-    this.todosService.getAllTodos(this.uid).valueChanges()
-      // .snapshotChanges().pipe(
-      //   map(changes =>
-      //     changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
-      //   )
-      // )
+    this.todosService.getAllTodos(this.user.uid)
+      // .valueChanges()
+      .snapshotChanges()
+      .pipe(
+        map(changes =>
+          changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
+        )
+      )
       .subscribe(data => {
         this.todos = data;
         console.log('todos = ', this.todos);
       });
   }
 
-  public addTodo(todo) {
-    todo.uid = this.uid;
-    console.log('new todo = ', todo);
-    this.todosService.createOneTodo(todo);
+  public addTodo(title: string) {
+    this.todosService.createOneTodo(this.user.uid, title);
   }
 
-  public toggleTodo(todo) {
+  public toggleTodo(todo: Todo) {
     this.todosService.toggleTodo(todo)
-
   }
 
-  public deleteTodo(todo) {
+  public deleteTodo(todo: Todo) {
     this.todosService.deleteOneTodo(todo);
   }
 
