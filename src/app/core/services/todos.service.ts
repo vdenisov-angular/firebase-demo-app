@@ -24,12 +24,17 @@ export class TodosService {
     this.todosRef = this.fireDB.list('/todos');
   }
 
-  public getAllTodos(uid) {
+  public getAllTodos() {
+    return this.todosRef.valueChanges();
+  }
+
+  public getUserTodos(uid) {
+    // return this.apiService.get('todos');
+
     const query = this.fireDB.list('/todos',
       ref => ref.orderByChild('uid').equalTo(uid)
     );
     return query.valueChanges();
-    // return this.apiService.get('todos');
   }
 
   public createOneTodo(uid, title) {

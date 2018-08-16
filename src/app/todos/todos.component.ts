@@ -27,7 +27,9 @@ export class TodosComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.todosService.getAllTodos(this.user.uid)
+    this.todosService
+      .getUserTodos(this.user.uid)
+      // .getAllTodos()
       .subscribe(data => {
         this.todos = data;
         console.log('uid = ', this.user.uid);
