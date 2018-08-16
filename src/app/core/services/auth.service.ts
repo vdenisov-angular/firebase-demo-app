@@ -13,38 +13,34 @@ import { map } from 'rxjs/operators';
 @Injectable()
 export class AuthService {
 
-  public authValue = new Subject();
+  // public authValue = new Subject();
   public user: firebase.User;
 
+  public userSub$: Observable<Object>;
   public authenticated$: Observable<boolean>;
-  public uid$: Observable<string>;
 
   constructor(public afAuth: AngularFireAuth) {
     this.authenticated$ = afAuth.authState.pipe(map(user => !!user));
-    this.uid$ = afAuth.authState.pipe(map(user => user.uid));
+    this.userSub$ = this.afAuth.authState;
   }
 
   public checkUserAuth() {
-
-    // return this.authenticated$.toPromise();
-
     return new Promise((resolve, reject) => {
-      this.authenticated$.subscribe(isAuth => resolve(isAuth));
+      // this.authenticated$.subscribe(isAuth => resolve(isAuth));
+      firebase.auth().onAuthStateChanged(user => resolve(user ? true : false));
     });
-
-    // firebase.auth().onAuthStateChanged(user => resolve(user ? true : false));
-
   }
 
   public signUp(data) {
     return this.afAuth.auth
       .createUserWithEmailAndPassword(data.email, data.password)
-      .then(user => {
-        if (user) {
-          this.authValue.next(true);
-          this.user = user.user;
+      .then(response => {
+        this.user = response.user;
+        console.log('AUTH-SERVICE => signUp() => user -> ', this.user);
+        if (this.user) {
+          // this.authValue.next(true);
         } else {
-          this.authValue.next(false);
+          // this.authValue.next(false);
         }
       })
       .catch(this.handleError);
@@ -55,10 +51,11 @@ export class AuthService {
       .signInWithEmailAndPassword(data.email, data.password)
       .then(response => {
         this.user = response.user;
+        console.log('AUTH-SERVICE => signIn() => user -> ', this.user);
         if (this.user) {
-          this.authValue.next(true);
+          // this.authValue.next(true);
         } else {
-          this.authValue.next(false);
+          // this.authValue.next(false);
         }
       })
       .catch(this.handleError);
@@ -66,7 +63,10 @@ export class AuthService {
 
   public signOut() {
     return this.afAuth.auth.signOut()
-      .then(() => this.authValue.next(false))
+      .then(() => {
+        // this.authValue.next(false);
+        this.user = undefined;
+      })
       .catch(this.handleError);
   }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 
@@ -12,7 +12,8 @@ import { AuthService } from '../../../core/services';
 })
 export class HeaderComponent implements OnInit {
 
-  @Input() public authorized;
+  public authorized;
+  public user;
 
   public notAuthLinks = [
     { path: '/', label: 'Home' },
@@ -30,15 +31,16 @@ export class HeaderComponent implements OnInit {
     private authService: AuthService,
     public dialog: MatDialog,
   ) {
-    this.authService.authValue
-      .subscribe((nextValue) => {
-        this.authorized = nextValue;
-      });
+    this.authService.authenticated$.subscribe(isAuth => {
+      this.authorized = isAuth;
+    });
+    this.authService.userSub$.subscribe(user => {
+      this.user = user;
+    });
   }
 
   ngOnInit() {
-    this.authService.checkUserAuth()
-      .then(auth => this.authorized = auth);
+    //
   }
 
   openHomePage() {
