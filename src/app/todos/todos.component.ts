@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TodosService } from './../core/services';
+import { TodosService, AuthService } from './../core/services';
 import { map } from 'rxjs/operators';
 
 @Component({
@@ -10,18 +10,25 @@ import { map } from 'rxjs/operators';
 export class TodosComponent implements OnInit {
 
   public todos = [];
+  public uid;
 
   constructor(
-    private todosService: TodosService
-  ) { }
+    private todosService: TodosService,
+    private authService: AuthService
+  ) {
+    this.authService.getUser().then(user => {
+      this.uid = user.uid;
+      console.log('user uid = ', this.uid);
+    });
+  }
 
   ngOnInit() {
-    this.todosService.getAllTodos()
-      .snapshotChanges().pipe(
-        map(changes =>
-          changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
-        )
-      )
+    this.todosService.getAllTodos(this.uid).valueChanges()
+      // .snapshotChanges().pipe(
+      //   map(changes =>
+      //     changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
+      //   )
+      // )
       .subscribe(data => {
         this.todos = data;
         console.log('todos = ', this.todos);
@@ -29,6 +36,7 @@ export class TodosComponent implements OnInit {
   }
 
   public addTodo(todo) {
+    todo.uid = this.uid;
     console.log('new todo = ', todo);
     this.todosService.createOneTodo(todo);
   }

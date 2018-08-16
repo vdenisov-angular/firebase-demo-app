@@ -5,23 +5,28 @@ import {
   AngularFireDatabase,
   AngularFireList,
 } from 'angularfire2/database';
+import { AuthService } from './auth.service';
 
 
 @Injectable()
 export class TodosService {
 
   public todosRef: AngularFireList<any>;
-  // todosRef: AngularFireObject<any[]>;
+  // public todosRef: AngularFireObject<any[]>;
 
   constructor(
     // private apiService: ApiService,
-    private fireDB: AngularFireDatabase
+    private fireDB: AngularFireDatabase,
+    private authService: AuthService
   ) {
-    this.todosRef = this.fireDB.list('todos');
+    this.todosRef = this.fireDB.list('/todos');
   }
 
-  public getAllTodos() {
-    return this.todosRef;
+  public getAllTodos(uid) {
+    const query = this.fireDB.list('/todos',
+      ref => ref.orderByChild('uid').equalTo(uid)
+    );
+    return query;
     // return this.apiService.get('todos');
   }
 
