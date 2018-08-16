@@ -1,8 +1,8 @@
-<mat-card class="todo-card"
+<mat-card appHover class="todo-card"
   [ngClass]="{'completed': todoInfo.isCompleted}">
 
   <mat-card-actions class="todo-actions">
-    <button mat-icon-button (click)="onToggle()">
+    <button appHover mat-icon-button (click)="onToggle()">
       <mat-icon *ngIf="!todoInfo.isCompleted">
         check_box_outline_blank
       </mat-icon>
@@ -17,7 +17,7 @@
   </mat-card-title>
   
   <mat-card-actions class="todo-actions">
-    <button mat-icon-button (click)="openDialogForDeleting()">
+    <button appHover mat-icon-button (click)="openDialogForDeleting()">
       <mat-icon>delete</mat-icon>
     </button>
   </mat-card-actions>
