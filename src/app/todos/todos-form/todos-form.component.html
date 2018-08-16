@@ -5,9 +5,9 @@
       placeholder="Enter your todo here">
   </mat-form-field>
 
-  <button mat-icon-button class="submit-button"
-    color="accent" [disabled]="!newTodo.length" (click)="onAdd()">
-      <mat-icon>add</mat-icon>
+  <button mat-mini-fab color="primary"
+    [disabled]="!newTodo.length" (click)="onAdd()">
+    <mat-icon class="icon-add">add</mat-icon>
   </button>
 
 </mat-card>

@@ -17,7 +17,7 @@ export class TodosFormComponent implements OnInit {
 
   public onAdd() {
     if (this.newTodo.length) {
-      let todo = {
+      const todo = {
         title: this.newTodo,
         isCompleted: false
       };
