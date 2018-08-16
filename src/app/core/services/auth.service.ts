@@ -13,15 +13,12 @@ import { map } from 'rxjs/operators';
 @Injectable()
 export class AuthService {
 
-  // public authValue = new Subject();
-  public user: firebase.User;
-
   public userSub$: Observable<Object>;
   public authenticated$: Observable<boolean>;
 
   constructor(public afAuth: AngularFireAuth) {
-    this.authenticated$ = afAuth.authState.pipe(map(user => !!user));
     this.userSub$ = this.afAuth.authState;
+    this.authenticated$ = afAuth.authState.pipe(map(user => !!user));
   }
 
   public checkUserAuth() {
@@ -34,39 +31,17 @@ export class AuthService {
   public signUp(data) {
     return this.afAuth.auth
       .createUserWithEmailAndPassword(data.email, data.password)
-      .then(response => {
-        this.user = response.user;
-        console.log('AUTH-SERVICE => signUp() => user -> ', this.user);
-        if (this.user) {
-          // this.authValue.next(true);
-        } else {
-          // this.authValue.next(false);
-        }
-      })
       .catch(this.handleError);
   }
 
   public signIn(data) {
     return this.afAuth.auth
       .signInWithEmailAndPassword(data.email, data.password)
-      .then(response => {
-        this.user = response.user;
-        console.log('AUTH-SERVICE => signIn() => user -> ', this.user);
-        if (this.user) {
-          // this.authValue.next(true);
-        } else {
-          // this.authValue.next(false);
-        }
-      })
       .catch(this.handleError);
   }
 
   public signOut() {
     return this.afAuth.auth.signOut()
-      .then(() => {
-        // this.authValue.next(false);
-        this.user = undefined;
-      })
       .catch(this.handleError);
   }
 

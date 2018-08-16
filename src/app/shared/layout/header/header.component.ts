@@ -12,7 +12,7 @@ import { AuthService } from '../../../core/services';
 })
 export class HeaderComponent implements OnInit {
 
-  public authorized;
+  public authorized = null;
   public user;
 
   public notAuthLinks = [
@@ -31,12 +31,10 @@ export class HeaderComponent implements OnInit {
     private authService: AuthService,
     public dialog: MatDialog,
   ) {
-    this.authService.authenticated$.subscribe(isAuth => {
-      this.authorized = isAuth;
-    });
-    this.authService.userSub$.subscribe(user => {
-      this.user = user;
-    });
+    this.authService.userSub$
+      .subscribe(user => this.user = user);
+    this.authService.authenticated$
+      .subscribe(isAuth => this.authorized = isAuth);
   }
 
   ngOnInit() {
