@@ -35,3 +35,11 @@
   z-index: 10;
 }
 
+.todo-actions {
+  opacity: 0;
+}
+
+.todo-card:hover .todo-actions {
+  opacity: 1;
+}
+
