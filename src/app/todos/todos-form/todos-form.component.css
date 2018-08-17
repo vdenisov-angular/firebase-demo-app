@@ -11,5 +11,13 @@
 }
 
 .submit-button {
-  background-color: blueviolet;
+  background-color: #8080804d;
+}
+
+.icon-add {
+  font-weight: bold;
+}
+
+.icon-add:hover {
+  color: yellow;
 }
