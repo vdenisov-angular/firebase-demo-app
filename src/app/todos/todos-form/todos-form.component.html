@@ -1,0 +1,13 @@
+<mat-card class="todos-form">
+
+  <mat-form-field class="input-field">
+    <input matInput [(ngModel)]="newTodo" (keyup.enter)="onAdd()"
+      placeholder="Enter your todo here">
+  </mat-form-field>
+
+  <button mat-mini-fab color="primary"
+    [disabled]="!newTodo.length" (click)="onAdd()">
+    <mat-icon class="icon-add">add</mat-icon>
+  </button>
+
+</mat-card>

@@ -1,0 +1,23 @@
+.todos-form {
+  margin: 20px 25%;
+  padding: 10px 0 0;
+  width: 50%;
+  background-color: white;
+  text-align: center;
+}
+
+.input-field {
+  width: 80%;
+}
+
+.submit-button {
+  background-color: #8080804d;
+}
+
+.icon-add {
+  font-weight: bold;
+}
+
+.icon-add:hover {
+  color: yellow;
+}
