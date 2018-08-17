@@ -1,32 +1,24 @@
-// import * as firebase from 'firebase/app';
+import * as firebase from 'firebase/app';
 
 
-// export interface ITodo {
-//   $key?: string;
-//   uid: string;
-//   title: string;
-//   completed: boolean;
-//   createdAt: Object;
-// }
+export interface ITodo {
+  _id: string;
+  uid: string;
+  title: string;
+  isCompleted: boolean;
+  createdAt: Object;
+}
 
 
-// export class Todo implements ITodo {
-//   uid;
-//   title;
-//   completed = false;
-//   createdAt = firebase.database.ServerValue.TIMESTAMP;
+export class Todo implements ITodo {
+  _id;
+  uid;
+  title;
+  isCompleted = false;
+  createdAt = firebase.database.ServerValue.TIMESTAMP;
 
-//   constructor(uid: string, title: string) {
-//     this.uid = uid;
-//     this.title = title;
-//   }
-// }
-
-export class Todo {
-  public key: string;
-  constructor(
-    public uid: string,
-    public title: string,
-    public isCompleted: boolean = false
-  ) {}
+  constructor(uid: string, title: string) {
+    this.uid = uid;
+    this.title = title;
+  }
 }

@@ -14,7 +14,7 @@
   <mat-card-footer class="todo-card__footer">
 
     <mat-card-subtitle class="footer__card-subtitle">
-      Aug 17 2018 - 16:00
+      {{ todoInfo.createdAt | date: 'short' }}
     </mat-card-subtitle>
 
     <mat-card-actions class="footer__card-actions">

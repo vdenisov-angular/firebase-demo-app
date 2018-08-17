@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import { ApiService } from './api.service';
-
 import {
   AngularFireDatabase,
   AngularFireList,
 } from 'angularfire2/database';
+
+import { ApiService } from './api.service';
 import { AuthService } from './auth.service';
 
-import { Todo } from './../../todos/todo.type';
+import { ITodo, Todo } from './../../todos/todo.type';
 
 
 @Injectable()
@@ -37,22 +37,22 @@ export class TodosService {
     return query.valueChanges();
   }
 
-  public createOneTodo(uid, title) {
+  public createOneTodo(uid: string, title: string) {
     const pushId = this.fireDB.createPushId();
     const todo = new Todo(uid, title);
 
-    const element = { ...todo, id: pushId };
-    this.todosRef.set(element.id, element);
+    const element = { ...todo, _id: pushId };
+    this.todosRef.set(element._id, element);
   }
 
-  public toggleTodo(todo) {
+  public toggleTodo(todo: ITodo) {
     todo.isCompleted = !todo.isCompleted;
-    this.todosRef.update(todo.id, todo);
+    this.todosRef.update(todo._id, todo);
     // return this.apiService.put('todos', todo);
   }
 
-  public deleteOneTodo(todo) {
-    this.todosRef.remove(todo.id);
+  public deleteOneTodo(todo: ITodo) {
+    this.todosRef.remove(todo._id);
     // return this.apiService.delete('todos', todo);
   }
 
