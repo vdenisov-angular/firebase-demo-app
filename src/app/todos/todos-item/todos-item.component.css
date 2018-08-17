@@ -1,24 +1,33 @@
 .todo-card {
-  vertical-align: top;
-  width: 290px;
-  margin: 5px;
-  padding-bottom: 0;
+  margin: 10px;
+  width: 250px;
+}
 
-  display: inline-flex;
+.todo-card__title {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.todo-card__content {
+  /* ... */
+}
+
+.todo-card__footer {
+  display: flex;
   flex-direction: row;
+  align-items: center;
   justify-content: space-between;
 }
 
-.todo-title {
-  width: 80%;
-  margin: 0;
-  font-size: 16px;
-  font-style: italic;
-  font-weight: normal;
+.footer__card-subtitle {
+  margin: 0 0 0 15px;
 }
 
-.todo-actions {
-  margin-top: -20px;
+.footer__card-actions {
+  margin: 0;
+  padding: 5px;
+  display: flex;
+  flex-direction: row;
 }
 
 /* ###################################### */
@@ -35,11 +44,11 @@
   z-index: 10;
 }
 
-.todo-actions {
+.footer__card-actions {
   opacity: 0;
 }
 
-.todo-card:hover .todo-actions {
+.todo-card:hover .footer__card-actions {
   opacity: 1;
 }
 
