@@ -1,7 +1,7 @@
-<mat-card appHover class="todo-card"
-  [ngClass]="{'completed': todoInfo.isCompleted}">
+<mat-card appHover class="todo-card">
 
-  <mat-card-title class="todo-card__title">
+  <mat-card-title class="todo-card__title"
+  [ngClass]="{'completed': todoInfo.isCompleted}">
     {{ todoInfo.title }}
   </mat-card-title>
 

@@ -47,7 +47,7 @@ export class TodosService {
 
   public toggleTodo(todo) {
     todo.isCompleted = !todo.isCompleted;
-    this.todosRef.update(todo.key, todo);
+    this.todosRef.update(todo.id, todo);
     // return this.apiService.put('todos', todo);
   }
 
