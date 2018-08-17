@@ -16,6 +16,7 @@ export class TodosItemComponent implements OnInit {
 
   @Input() public todoInfo;
   @Output() public toggleEvent = new EventEmitter()
+  @Output() public updateEvent = new EventEmitter()
   @Output() public deleteEvent = new EventEmitter()
 
   constructor(public dialog: MatDialog) {}
@@ -30,8 +31,13 @@ export class TodosItemComponent implements OnInit {
     this.isEdit = false;
   }
 
-  public onEdit() {
-    console.log('edit');
+  public onUpdate() {
+    if (this.newTitle.length) {
+      this.todoInfo.title = this.newTitle;
+      this.updateEvent.emit(this.todoInfo);
+      this.onFinishEdit();
+      this.newTitle = '';
+    }
   }
 
   public onToggle() {

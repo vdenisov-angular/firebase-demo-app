@@ -52,3 +52,28 @@
   opacity: 1;
 }
 
+/* ###################################### */
+
+.todo-card__edit-form {
+  /* ... */
+}
+
+.edit-form__input {
+  margin: 0 auto;
+  width: 250px;
+}
+
+.edit-form__actions {
+  display: flex;
+  justify-content: space-around;
+}
+
+.actions__button_save {
+  background-color: white;
+  color: green;
+}
+
+.actions__button_cancel {
+  background-color: white;
+  color: red;
+}

@@ -45,10 +45,14 @@ export class TodosService {
     this.todosRef.set(element._id, element);
   }
 
-  public toggleTodo(todo: ITodo) {
+  public toggleOneTodo(todo: ITodo) {
     todo.isCompleted = !todo.isCompleted;
     this.todosRef.update(todo._id, todo);
     // return this.apiService.put('todos', todo);
+  }
+
+  public updateOneTodo(todo: ITodo) {
+    this.todosRef.update(todo._id, todo);
   }
 
   public deleteOneTodo(todo: ITodo) {

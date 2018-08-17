@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TodosService, AuthService } from './../core/services';
-import { Todo } from './todo.type';
+import { ITodo } from './todo.type';
 
 
 @Component({
@@ -41,11 +41,15 @@ export class TodosComponent implements OnInit {
     this.todosService.createOneTodo(this.user.uid, title);
   }
 
-  public toggleTodo(todo: Todo) {
-    this.todosService.toggleTodo(todo)
+  public toggleTodo(todo: ITodo) {
+    this.todosService.toggleOneTodo(todo)
   }
 
-  public deleteTodo(todo: Todo) {
+  public updateTodo(todo: ITodo) {
+    this.todosService.updateOneTodo(todo)
+  }
+
+  public deleteTodo(todo: ITodo) {
     this.todosService.deleteOneTodo(todo);
   }
 
