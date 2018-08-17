@@ -14,10 +14,12 @@ import { map } from 'rxjs/operators';
 export class AuthService {
 
   public userSub$: Observable<Object>;
+  public uid$: Observable<string>;
   public authenticated$: Observable<boolean>;
 
   constructor(public afAuth: AngularFireAuth) {
     this.userSub$ = this.afAuth.authState;
+    this.uid$ = afAuth.authState.pipe(map(user => user.uid));
     this.authenticated$ = afAuth.authState.pipe(map(user => !!user));
   }
 
@@ -25,6 +27,18 @@ export class AuthService {
     return new Promise((resolve, reject) => {
       // this.authenticated$.subscribe(isAuth => resolve(isAuth));
       firebase.auth().onAuthStateChanged(user => resolve(user ? true : false));
+    });
+  }
+
+  public getUser() {
+    return new Promise((resolve, reject) => {
+      firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+          resolve(user);
+        } else {
+          reject(undefined);
+        }
+      });
     });
   }
 
