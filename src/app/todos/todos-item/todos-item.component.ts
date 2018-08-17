@@ -11,6 +11,9 @@ import { DialogDeleteComponent } from './../../shared/dialogs';
 })
 export class TodosItemComponent implements OnInit {
 
+  public newTitle = '';
+  public isEdit = false;
+
   @Input() public todoInfo;
   @Output() public toggleEvent = new EventEmitter()
   @Output() public deleteEvent = new EventEmitter()
@@ -19,17 +22,29 @@ export class TodosItemComponent implements OnInit {
 
   ngOnInit() { }
 
+  public onStartEdit() {
+    this.isEdit = true;
+  }
+
+  public onFinishEdit() {
+    this.isEdit = false;
+  }
+
+  public onEdit() {
+    console.log('edit');
+  }
+
   public onToggle() {
     this.toggleEvent.emit(this.todoInfo);
   }
 
   public openDialogForDeleting() {
-    let dialogRef = this.dialog.open(DialogDeleteComponent, {
+    const dialogRef = this.dialog.open(DialogDeleteComponent, {
       width: '250px',
       data: { title: 'Delete todo' }
     });
     dialogRef.afterClosed().subscribe(result => {
-      let answer = result;
+      const answer = result;
       if (answer === true ) {
         this.deleteEvent.emit(this.todoInfo);
       }

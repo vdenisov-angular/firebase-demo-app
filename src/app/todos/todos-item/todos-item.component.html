@@ -1,25 +1,43 @@
 <mat-card appHover class="todo-card"
   [ngClass]="{'completed': todoInfo.isCompleted}">
 
-  <mat-card-actions class="todo-actions">
-    <button appHover mat-icon-button (click)="onToggle()">
-      <mat-icon *ngIf="!todoInfo.isCompleted">
-        check_box_outline_blank
-      </mat-icon>
-      <mat-icon *ngIf="todoInfo.isCompleted">
-        check_box
-      </mat-icon>
-    </button>
-  </mat-card-actions>
-
-  <mat-card-title class="todo-title">
+  <mat-card-title class="todo-card__title">
     {{ todoInfo.title }}
   </mat-card-title>
+
+  <!--
+  <mat-card-content class="todo-card__content">
+    content - content - content - content - content - content - content
+  </mat-card-content>
+  -->
+
+  <mat-card-footer class="todo-card__footer">
+
+    <mat-card-subtitle class="footer__card-subtitle">
+      Aug 17 2018 - 16:00
+    </mat-card-subtitle>
+
+    <mat-card-actions class="footer__card-actions">
+
+      <button appHover mat-icon-button (click)="onToggle()">
+        <mat-icon *ngIf="!todoInfo.isCompleted">
+          check_box_outline_blank
+        </mat-icon>
+        <mat-icon *ngIf="todoInfo.isCompleted">
+          check_box
+        </mat-icon>
+      </button>
   
-  <mat-card-actions class="todo-actions">
-    <button appHover mat-icon-button (click)="openDialogForDeleting()">
-      <mat-icon>delete</mat-icon>
-    </button>
-  </mat-card-actions>
+      <button appHover mat-icon-button (click)="onEdit()">
+        <mat-icon>edit</mat-icon>
+      </button>
+  
+      <button appHover mat-icon-button (click)="openDialogForDeleting()">
+        <mat-icon>delete</mat-icon>
+      </button>
+    
+    </mat-card-actions>
+
+  </mat-card-footer>
 
 </mat-card>
