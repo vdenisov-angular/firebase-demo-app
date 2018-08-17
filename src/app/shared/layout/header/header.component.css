@@ -1,15 +1,3 @@
-.mat-tab-group.mat-primary .mat-ink-bar,
-.mat-tab-nav-bar.mat-primary .mat-ink-bar {
-  background-color: #ffffff!important;
-}
-
-/* .mat-toolbar.mat-primary {
-  background: #000c4c;
-  color: #fff;
-} */
-
-/* ################################################## */
-
 .toolbar-area {
   display: flex;
   flex-direction: row;

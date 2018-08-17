@@ -13,60 +13,49 @@ import { map } from 'rxjs/operators';
 @Injectable()
 export class AuthService {
 
-  public authValue = new Subject();
-  public user: firebase.User;
-
-  public authenticated$: Observable<boolean>;
+  public userSub$: Observable<Object>;
   public uid$: Observable<string>;
+  public authenticated$: Observable<boolean>;
 
   constructor(public afAuth: AngularFireAuth) {
-    this.authenticated$ = afAuth.authState.pipe(map(user => !!user));
+    this.userSub$ = this.afAuth.authState;
     this.uid$ = afAuth.authState.pipe(map(user => user.uid));
+    this.authenticated$ = afAuth.authState.pipe(map(user => !!user));
   }
 
   public checkUserAuth() {
-
-    // return this.authenticated$.toPromise();
-
     return new Promise((resolve, reject) => {
-      this.authenticated$.subscribe(isAuth => resolve(isAuth));
+      // this.authenticated$.subscribe(isAuth => resolve(isAuth));
+      firebase.auth().onAuthStateChanged(user => resolve(user ? true : false));
     });
+  }
 
-    // firebase.auth().onAuthStateChanged(user => resolve(user ? true : false));
-
+  public getUser() {
+    return new Promise((resolve, reject) => {
+      firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+          resolve(user);
+        } else {
+          reject(undefined);
+        }
+      });
+    });
   }
 
   public signUp(data) {
     return this.afAuth.auth
       .createUserWithEmailAndPassword(data.email, data.password)
-      .then(user => {
-        if (user) {
-          this.authValue.next(true);
-          this.user = user.user;
-        } else {
-          this.authValue.next(false);
-        }
-      })
       .catch(this.handleError);
   }
 
   public signIn(data) {
     return this.afAuth.auth
       .signInWithEmailAndPassword(data.email, data.password)
-      .then(response => {
-        this.user = response.user;
-        if (this.user) {
-          this.authValue.next(true);
-        } else {
-          this.authValue.next(false);
-        }
-      })
       .catch(this.handleError);
   }
 
   public signOut() {
     return this.afAuth.auth.signOut()
-      .then(() => this.authValue.next(false))
       .catch(this.handleError);
   }
 

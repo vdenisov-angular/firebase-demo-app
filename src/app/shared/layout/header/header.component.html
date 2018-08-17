@@ -1,7 +1,11 @@
 <mat-toolbar color="primary" class="toolbar-area">
 
   <div class="project-name">
-    Welcome in Todo App !!!
+    <!-- Welcome in Todo App !!! -->
+    Hello,
+      <span *ngIf="user">{{ user.email }}</span>
+      <span *ngIf="!user">anonimus</span>
+    !!!
   </div>
 
   <div class="toolbar-buttons">
@@ -9,7 +13,7 @@
     <div *ngIf="authorized === null">
       Loading...
     </div>
-
+    
     <div *ngIf="authorized === false">
 
       <nav mat-tab-nav-bar>
@@ -19,8 +23,8 @@
           routerLinkActive="active"
           [routerLinkActiveOptions]="{exact: true}"
           #rla="routerLinkActive"
-          [active]="link.isActive">
-            {{link.label}}
+          [active]="rla.isActive">
+        {{link.label}}
         </a>
       </nav>
 
@@ -36,7 +40,7 @@
           [routerLinkActiveOptions]="{exact: true}"
           #rla="routerLinkActive"
           [active]="rla.isActive">
-            {{link.label}}
+        {{link.label}}
         </a>
 
         <button mat-icon-button class="extraMenu"
@@ -50,7 +54,7 @@
           Profile
         </button>
         <button mat-menu-item class="extra" (click)="signOut()">
-          Exit
+          Sign Out
         </button>
       </mat-menu>
 

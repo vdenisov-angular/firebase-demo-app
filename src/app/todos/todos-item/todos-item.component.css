@@ -1,24 +1,33 @@
 .todo-card {
-  vertical-align: top;
-  width: 290px;
-  margin: 5px;
-  padding-bottom: 0;
+  margin: 10px;
+  width: 250px;
+}
 
-  display: inline-flex;
+.todo-card__title {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.todo-card__content {
+  /* ... */
+}
+
+.todo-card__footer {
+  display: flex;
   flex-direction: row;
+  align-items: center;
   justify-content: space-between;
 }
 
-.todo-title {
-  width: 80%;
-  margin: 0;
-  font-size: 16px;
-  font-style: italic;
-  font-weight: normal;
+.footer__card-subtitle {
+  margin: 0 0 0 15px;
 }
 
-.todo-actions {
-  margin-top: -20px;
+.footer__card-actions {
+  margin: 0;
+  padding: 5px;
+  display: flex;
+  flex-direction: row;
 }
 
 /* ###################################### */
@@ -26,4 +35,45 @@
 .completed {
   color: grey;
   text-decoration: line-through;
+}
+
+.hovered {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(0,0,0,.5);
+  transition: .5s all;
+  z-index: 10;
+}
+
+.footer__card-actions {
+  opacity: 0;
+}
+
+.todo-card:hover .footer__card-actions {
+  opacity: 1;
+}
+
+/* ###################################### */
+
+.todo-card__edit-form {
+  /* ... */
+}
+
+.edit-form__input {
+  margin: 0 auto;
+  width: 250px;
+}
+
+.edit-form__actions {
+  display: flex;
+  justify-content: space-around;
+}
+
+.actions__button_save {
+  background-color: white;
+  color: green;
+}
+
+.actions__button_cancel {
+  background-color: white;
+  color: red;
 }
