@@ -4,5 +4,6 @@
 
 <app-todos-list [todos]="todos"
   (toggleEvent)="toggleTodo($event)"
+  (updateEvent)="updateTodo($event)"
   (deleteEvent)="deleteTodo($event)">
 </app-todos-list>

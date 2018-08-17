@@ -11,6 +11,10 @@ import {
   DialogDeleteComponent,
 } from './dialogs';
 
+import {
+  HoverDirective,
+} from './directives';
+
 
 @NgModule({
   declarations: [
@@ -18,6 +22,8 @@ import {
     FooterComponent,
 
     DialogDeleteComponent,
+
+    HoverDirective,
   ],
   imports: [
     CommonModule,
@@ -42,6 +48,8 @@ import {
 
     FormsModule,
     ReactiveFormsModule,
+
+    HoverDirective,
   ]
 })
 export class SharedModule { }

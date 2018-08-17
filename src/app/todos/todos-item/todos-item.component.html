@@ -1,25 +1,70 @@
-<mat-card class="todo-card"
-  [ngClass]="{'completed': todoInfo.isCompleted}">
+<mat-card appHover class="todo-card">
 
-  <mat-card-actions class="todo-actions">
-    <button mat-icon-button (click)="onToggle()">
-      <mat-icon *ngIf="!todoInfo.isCompleted">
-        check_box_outline_blank
-      </mat-icon>
-      <mat-icon *ngIf="todoInfo.isCompleted">
-        check_box
-      </mat-icon>
-    </button>
-  </mat-card-actions>
+  <div *ngIf="!isEdit"> 
 
-  <mat-card-title class="todo-title">
-    {{ todoInfo.title }}
-  </mat-card-title>
+    <mat-card-title class="todo-card__title"
+      [ngClass]="{'completed': todoInfo.isCompleted}">
+        {{ todoInfo.title }}    
+    </mat-card-title>
+
+    <!--
+    <mat-card-content class="todo-card__content">
+      content - content - content - content - content - content - content
+    </mat-card-content>
+    -->
+
+    <mat-card-footer class="todo-card__footer">
+
+      <mat-card-subtitle class="footer__card-subtitle">
+        {{ todoInfo.createdAt | date: 'short' }}
+      </mat-card-subtitle>
+
+      <mat-card-actions class="footer__card-actions">
+
+        <button mat-icon-button appHover (click)="onToggle()">
+          <mat-icon *ngIf="!todoInfo.isCompleted">
+            check_box_outline_blank
+          </mat-icon>
+          <mat-icon *ngIf="todoInfo.isCompleted">
+            check_box
+          </mat-icon>
+        </button>
+    
+        <button mat-icon-button appHover (click)="onStartEdit()">
+          <mat-icon>edit</mat-icon>
+        </button>
+    
+        <button mat-icon-button appHover (click)="openDialogForDeleting()">
+          <mat-icon>delete</mat-icon>
+        </button>
+      
+      </mat-card-actions>
+
+    </mat-card-footer>
+
+  </div>
+
+  <div *ngIf="isEdit" class="todo-card__edit-form">
+
+    <mat-form-field class="edit-form__input">
+      <input matInput [(ngModel)]="newTitle" (keyup.enter)="onUpdate()"
+        placeholder="Enter changes for todo">
+    </mat-form-field>
+
+    <div class="edit-form__actions">
+
+      <button mat-mini-fab appHover class="actions__button_save"
+        (click)="onUpdate()" [disabled]="!newTitle.length">
+          <mat-icon>done</mat-icon>
+      </button>
+
+      <button mat-mini-fab appHover class="actions__button_cancel"
+        (click)="onFinishEdit()">
+          <mat-icon>clear</mat-icon>
+      </button>
   
-  <mat-card-actions class="todo-actions">
-    <button mat-icon-button (click)="openDialogForDeleting()">
-      <mat-icon>delete</mat-icon>
-    </button>
-  </mat-card-actions>
+    </div>
+  
+  </div>
 
 </mat-card>

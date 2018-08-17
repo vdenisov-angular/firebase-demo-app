@@ -8,6 +8,7 @@
     <app-todos-item *ngFor="let todo of todos"
       [todoInfo]="todo"
       (toggleEvent)="toggleTodo($event)"
+      (updateEvent)="updateTodo($event)"
       (deleteEvent)="deleteTodo($event)">
     </app-todos-item>
   </div>

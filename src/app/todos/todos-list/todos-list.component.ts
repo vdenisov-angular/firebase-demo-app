@@ -10,6 +10,7 @@ export class TodosListComponent implements OnInit {
   @Input() public todos;
 
   @Output() toggleEvent = new EventEmitter();
+  @Output() updateEvent = new EventEmitter();
   @Output() deleteEvent = new EventEmitter();
 
   constructor() { }
@@ -18,6 +19,10 @@ export class TodosListComponent implements OnInit {
 
   public toggleTodo(todo) {
     this.toggleEvent.emit(todo);
+  }
+
+  public updateTodo(todo) {
+    this.updateEvent.emit(todo);
   }
 
   public deleteTodo(todo) {
