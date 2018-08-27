@@ -47,7 +47,7 @@ export class TodosItemComponent implements OnInit {
   public openDialogForDeleting() {
     const dialogRef = this.dialog.open(DialogDeleteComponent, {
       width: '250px',
-      data: { title: 'Delete todo' }
+      data: { title: 'Удалить задачу?' }
     });
     dialogRef.afterClosed().subscribe(result => {
       const answer = result;

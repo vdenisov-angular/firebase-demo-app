@@ -1,11 +1,10 @@
 <mat-toolbar color="primary" class="toolbar-area">
 
-  <div class="project-name">
+  <div>
     <!-- Welcome in Todo App !!! -->
-    Hello,
+    Привет,
       <span *ngIf="user">{{ user.email }}</span>
-      <span *ngIf="!user">anonimus</span>
-    !!!
+      <span *ngIf="!user">Анонимус</span>
   </div>
 
   <div class="toolbar-buttons">
@@ -13,7 +12,7 @@
     <div *ngIf="authorized === null">
       Loading...
     </div>
-    
+
     <div *ngIf="authorized === false">
 
       <nav mat-tab-nav-bar>
@@ -51,10 +50,10 @@
 
       <mat-menu #menu="matMenu">
         <button mat-menu-item class="extra" (click)="openProfilePage()">
-          Profile
+          Профиль
         </button>
         <button mat-menu-item class="extra" (click)="signOut()">
-          Sign Out
+          Выйти
         </button>
       </mat-menu>
 

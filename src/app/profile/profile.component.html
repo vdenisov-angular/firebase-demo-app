@@ -1,18 +1,7 @@
-<<<<<<< HEAD
-<mat-card class="example-card">
-  <mat-card-header>
-    <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title>name: {{name}}</mat-card-title> <!-- Имя -->
-    <mat-card-subtitle>e-mail: {{email}}</mat-card-subtitle> <!-- Почта -->
-  </mat-card-header>
-  <img mat-card-image src="../../assets/images/Vova.jpg" alt="Photo of a Shiba Inu">
-  <mat-card-actions>
-    <!--user about info-->
-=======
 <mat-card class="user-profile">
 
   <mat-card-title class="user-profile__title">
-    Profile
+    Профиль
   </mat-card-title>
   <img mat-card-image src="../../assets/images/Oleg.jpg">
 
@@ -45,20 +34,18 @@
   <mat-card-actions class="user-profile__buttons">
 
     <button mat-button *ngIf="!isEdit" (click)="onToggleEdit()">
-      Edit
+      Изменить
     </button>
 
     <button mat-button *ngIf="isEdit" (click)="onSave()"
        [disabled]="updatingForm.form.invalid">
-      Save
+      Сохранить
     </button>
 
     <button mat-button *ngIf="isEdit" (click)="onToggleEdit()"
     >
-      Cancel
+      Отменить
     </button>
-
->>>>>>> 325d6590f995cbfe506d3b039b4ff7ab173329de
   </mat-card-actions>
 
 </mat-card>

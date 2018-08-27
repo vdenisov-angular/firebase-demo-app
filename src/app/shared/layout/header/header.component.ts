@@ -16,14 +16,14 @@ export class HeaderComponent implements OnInit {
   public user;
 
   public notAuthLinks = [
-    { path: '/', label: 'Home' },
-    { path: '/auth/login', label: 'Sign In' },
-    { path: '/auth/register', label: 'Sign Up' },
+    { path: '/', label: 'Начало' },
+    { path: '/auth/login', label: 'Войти' },
+    { path: '/auth/register', label: 'Регистрация' },
   ];
 
   public authLinks = [
-    { path: '/', label: 'Home', isActive: true },
-    { path: '/todos', label: 'Todos' },
+    { path: '/', label: 'Начало', isActive: true },
+    { path: '/todos', label: 'Задачи' },
   ];
 
   constructor(
