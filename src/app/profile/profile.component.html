@@ -1,20 +1,52 @@
-<mat-card class="example-card">
-  <mat-card-header>
-    <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title>Vova</mat-card-title> <!-- Имя -->
-    <mat-card-subtitle>admin@admin.com</mat-card-subtitle> <!-- Почта -->
-  </mat-card-header>
-  <img mat-card-image src="../../assets/images/Vova.jpg" alt="Photo of a Shiba Inu">
+<mat-card class="user-profile">
+
+  <mat-card-title class="user-profile__title">
+    Profile
+  </mat-card-title>
+  <img mat-card-image src="../../assets/images/Oleg.jpg">
+
   <mat-card-content>
-    <p>
-      Web-разработкой (особенно front-end) я занимаюсь с начала 2018 года.
-      До этого я занимался разработкой на Python ( в основном парсеры ).
-      В свободное время занимаюсь изучением английского языка ( уровень: Pre-Intemediate ).
-      Иногда я пишу стихи -> группа_в_ВК (+1 в карму за репост).
-    </p>
+    <form #updatingForm="ngForm" class="user-profile__form">
+
+      <label for="nameInput">
+        <mat-icon *ngIf="isEdit">edit</mat-icon>
+      </label>
+
+      <mat-form-field class="user-profile__form_field">
+        <input matInput [(ngModel)]="userName" class="user-profile__input"
+          name="nameInput" type="text" [disabled]="!isEdit" required>
+      </mat-form-field>
+
+      <br>
+
+      <label for="emailInput">
+        <mat-icon *ngIf="isEdit">lock</mat-icon>
+      </label>
+      <mat-form-field class="user-profile__form_field">
+        <input matInput value="{{ userEmail }}"  class="user-profile__input"
+          name="emailInput" type="text" disabled>
+      </mat-form-field>
+
+    </form>
+
   </mat-card-content>
-  <mat-card-actions>
-    <button mat-button>LIKE</button>
-    <button mat-button>SHARE</button>
+
+  <mat-card-actions class="user-profile__buttons">
+
+    <button mat-button *ngIf="!isEdit" (click)="onToggleEdit()">
+      Edit
+    </button>
+
+    <button mat-button *ngIf="isEdit" (click)="onSave()"
+       [disabled]="updatingForm.form.invalid">
+      Save
+    </button>
+
+    <button mat-button *ngIf="isEdit" (click)="onToggleEdit()"
+    >
+      Cancel
+    </button>
+
   </mat-card-actions>
+
 </mat-card>
