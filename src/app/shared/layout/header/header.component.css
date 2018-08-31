@@ -9,9 +9,6 @@ button {
   font-size: 25px;
 }
 
-.active {
-  color: yellow;
-}
 
 .extra {
   color: black;
@@ -39,9 +36,6 @@ ul li {
   font-size: 33px!important;
 }
 
-mat-icon :hover {
-  color: yellow;
-}
 
 /* ################################################## */
 
@@ -51,9 +45,6 @@ a {
 
 }
 
-a:hover {
-  font-size: 30px;
-}
 
 a:active {
   font-size: 15px;
