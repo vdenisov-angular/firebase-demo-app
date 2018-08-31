@@ -4,6 +4,20 @@
   justify-content: space-between;
   height: 40px;
 }
+.toolbar-buttons{
+  position: relative;
+  top: 1.8em;
+}
+.loading-position{
+  position: relative;
+  bottom: 1.7em;
+}
+.hello-position{
+  position: relative;
+  left: 77em;
+  bottom: 1.8em;
+  text-align: right;
+}
 
 button {
   font-size: 25px;
@@ -30,11 +44,15 @@ ul li {
 
 .extraMenu {
   margin-left: 40px;
+  position: relative;
+  left: 72.5em;
+  bottom: 3em;
 }
 
 .icon-size {
   font-size: 33px!important;
 }
+
 
 
 /* ################################################## */

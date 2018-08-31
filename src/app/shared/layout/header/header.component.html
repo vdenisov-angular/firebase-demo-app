@@ -1,15 +1,14 @@
 <mat-toolbar color="primary" class="toolbar-area">
 
-  <div>
-    <!-- Welcome in Todo App -->
+  <!-- <div>
     Привет,
-      <span *ngIf="user">{{ user.email }}</span>
+      <span *ngIf="user">{{ user.dispalyName }}</span>
       <span *ngIf="!user">Аноним</span>
-  </div>
+  </div> -->
 
   <div class="toolbar-buttons">
 
-    <div *ngIf="authorized === null">
+    <div *ngIf="authorized === null" class="loading-position">
       Loading...
     </div>
 
@@ -41,14 +40,17 @@
           [active]="rla.isActive">
         {{link.label}}
         </a>
-
-        <button mat-icon-button class="extraMenu"
-          [matMenuTriggerFor]="menu">
-          <mat-icon class="icon-size">account_circle</mat-icon>
-        </button>
       </nav>
-
-      <mat-menu #menu="matMenu" yPosition="below" [overlapTrigger]="false">
+      <div class="hello-position">
+        Привет,
+        <span *ngIf="user">{{ user.displayName }}</span>
+        <span *ngIf="!user">Аноним</span>
+      </div>
+    <button mat-icon-button class="extraMenu"
+      [matMenuTriggerFor]="menu">
+      <mat-icon class="icon-size">account_circle</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu" yPosition="below" [overlapTrigger]="false">
         <button mat-menu-item class="extra" (click)="openProfilePage()">
           Профиль
         </button>
