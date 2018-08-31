@@ -48,7 +48,7 @@
         </button>
       </nav>
 
-      <mat-menu #menu="matMenu">
+      <mat-menu #menu="matMenu" yPosition="below" [overlapTrigger]="false">
         <button mat-menu-item class="extra" (click)="openProfilePage()">
           Профиль
         </button>
