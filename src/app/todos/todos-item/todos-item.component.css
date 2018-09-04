@@ -29,6 +29,11 @@
   display: flex;
   flex-direction: row;
 }
+.mat-checkbox-position{
+  position: relative;
+  top: 0.7em;
+  right: 0.6em;
+}
 
 /* ###################################### */
 
