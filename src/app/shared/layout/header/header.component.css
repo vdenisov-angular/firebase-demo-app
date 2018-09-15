@@ -6,16 +6,16 @@
 }
 .toolbar-buttons{
   position: relative;
-  top: 1.8em;
+  top: 35px;
 }
 .loading-position{
   position: relative;
-  bottom: 1.7em;
+  bottom: 35px;
 }
 .hello-position{
   position: relative;
-  left: 77em;
-  bottom: 1.8em;
+  left: 1535px;
+  bottom: 36px;
   text-align: right;
 }
 
@@ -45,8 +45,8 @@ ul li {
 .extraMenu {
   margin-left: 40px;
   position: relative;
-  left: 72.5em;
-  bottom: 3em;
+  left: 1810px;
+  bottom: 76px;
 }
 
 .icon-size {
