@@ -21,7 +21,7 @@ export class ProfileComponent implements OnInit {
     this.authService.userSub$.subscribe((user: firebase.User) => {
       if (user != null) {
         this.user = user;
-        this.userName = this.user.displayName || 'lazy user';
+        this.userName = this.user.displayName;
         this.userEmail = this.user.email;
       }
     });

@@ -4,19 +4,25 @@
   justify-content: space-between;
   height: 40px;
 }
-
-.project-name {
-  font-weight: bold;
-  font-style: italic;
+.toolbar-buttons{
+  position: relative;
+  top: 35px;
+}
+.loading-position{
+  position: relative;
+  bottom: 35px;
+}
+.hello-position{
+  position: relative;
+  left: 1535px;
+  bottom: 36px;
+  text-align: right;
 }
 
 button {
   font-size: 25px;
 }
 
-.active {
-  color: yellow;
-}
 
 .extra {
   color: black;
@@ -38,15 +44,16 @@ ul li {
 
 .extraMenu {
   margin-left: 40px;
+  position: relative;
+  left: 1810px;
+  bottom: 76px;
 }
 
 .icon-size {
   font-size: 33px!important;
 }
 
-mat-icon :hover {
-  color: yellow;
-}
+
 
 /* ################################################## */
 
@@ -56,9 +63,6 @@ a {
 
 }
 
-a:hover {
-  font-size: 30px;
-}
 
 a:active {
   font-size: 15px;

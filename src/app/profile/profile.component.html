@@ -1,7 +1,7 @@
-<mat-card class="user-profile">
+<!-- <mat-card class="user-profile">
 
   <mat-card-title class="user-profile__title">
-    Profile
+    Профиль
   </mat-card-title>
   <img mat-card-image src="../../assets/images/Oleg.jpg">
 
@@ -34,19 +34,39 @@
   <mat-card-actions class="user-profile__buttons">
 
     <button mat-button *ngIf="!isEdit" (click)="onToggleEdit()">
-      Edit
+      Изменить
     </button>
 
     <button mat-button *ngIf="isEdit" (click)="onSave()"
        [disabled]="updatingForm.form.invalid">
-      Save
+      Сохранить
     </button>
 
     <button mat-button *ngIf="isEdit" (click)="onToggleEdit()"
     >
-      Cancel
+      Отменить
     </button>
-
   </mat-card-actions>
 
-</mat-card>
+</mat-card> -->
+<mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title>Общие сведения</mat-card-title>
+    </mat-card-header>
+    <mat-card-subtitle>E-mail</mat-card-subtitle>
+    <mat-card-title>
+      <label for="emailInput">
+        <mat-icon *ngIf="isEdit">lock</mat-icon>
+      </label>
+      <mat-form-field class="user-profile__form_field">
+        <input matInput value="{{ userEmail }}"  class="user-profile__input"
+          name="emailInput" type="text" disabled>
+      </mat-form-field>
+    </mat-card-title>
+    <mat-card-content>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>LIKE</button>
+      <button mat-button>SHARE</button>
+    </mat-card-actions>
+  </mat-card>
