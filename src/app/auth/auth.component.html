@@ -15,18 +15,18 @@
       <form [formGroup]="authForm" (ngSubmit)="submitForm()">
 
         <mat-form-field class="example-full-width" *ngIf="authType == 'register'">
-          <input matInput type="text" 
-            formControlName="username" placeholder="Username"/>
+          <input matInput type="text"
+            formControlName="username" placeholder="Имя пользователя"/>
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
           <input matInput type="text" value="admin@gmail.com"
-            formControlName="email" placeholder="Email"/>
+            formControlName="email" placeholder="Почта"/>
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
           <input matInput type="password"  value="qwerty123"
-            formControlName="password" placeholder="Password"/>
+            formControlName="password" placeholder="Пароль"/>
         </mat-form-field>
 
         <button mat-button class="button-submit"
@@ -40,15 +40,15 @@
 
 
     </mat-card-content>
-    <mat-card-footer>
+    <!-- <mat-card-footer>
       <a [routerLink]="['/auth/login']" *ngIf="authType == 'register'">
         Have an account?
       </a>
-      
+
       <a [routerLink]="['/auth/register']" *ngIf="authType == 'login'">
         Need an account?
       </a>
-    </mat-card-footer>
+    </mat-card-footer> -->
 
   </mat-card>
 

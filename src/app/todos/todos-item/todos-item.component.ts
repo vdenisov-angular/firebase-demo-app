@@ -13,15 +13,16 @@ export class TodosItemComponent implements OnInit {
 
   public newTitle = '';
   public isEdit = false;
+  public disabled = false;
 
   @Input() public todoInfo;
-  @Output() public toggleEvent = new EventEmitter()
-  @Output() public updateEvent = new EventEmitter()
-  @Output() public deleteEvent = new EventEmitter()
+  @Output() public toggleEvent = new EventEmitter();
+  @Output() public updateEvent = new EventEmitter();
+  @Output() public deleteEvent = new EventEmitter();
 
   constructor(public dialog: MatDialog) {}
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   public onStartEdit() {
     this.isEdit = true;
@@ -29,6 +30,11 @@ export class TodosItemComponent implements OnInit {
 
   public onFinishEdit() {
     this.isEdit = false;
+  }
+
+  public printCompleted() {
+    // console.log(this.disabled);
+    console.log(this.todoInfo.isCompleted);
   }
 
   public onUpdate() {
@@ -47,7 +53,7 @@ export class TodosItemComponent implements OnInit {
   public openDialogForDeleting() {
     const dialogRef = this.dialog.open(DialogDeleteComponent, {
       width: '250px',
-      data: { title: 'Delete todo' }
+      data: { title: 'Удалить задачу?' }
     });
     dialogRef.afterClosed().subscribe(result => {
       const answer = result;

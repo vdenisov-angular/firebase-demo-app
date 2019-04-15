@@ -1,10 +1,10 @@
 <mat-card appHover class="todo-card">
 
-  <div *ngIf="!isEdit"> 
+  <div *ngIf="!isEdit">
 
     <mat-card-title class="todo-card__title"
       [ngClass]="{'completed': todoInfo.isCompleted}">
-        {{ todoInfo.title }}    
+        {{ todoInfo.title }}
     </mat-card-title>
 
     <!--
@@ -20,24 +20,20 @@
       </mat-card-subtitle>
 
       <mat-card-actions class="footer__card-actions">
-
-        <button mat-icon-button appHover (click)="onToggle()">
-          <mat-icon *ngIf="!todoInfo.isCompleted">
-            check_box_outline_blank
-          </mat-icon>
-          <mat-icon *ngIf="todoInfo.isCompleted">
-            check_box
-          </mat-icon>
-        </button>
-    
+        <mat-checkbox appHover
+          class = "mat-checkbox-position"
+          [(ngModel)]="todoInfo.isCompleted"
+          (click)="onToggle()"
+          color= "primary">
+        </mat-checkbox>
         <button mat-icon-button appHover (click)="onStartEdit()">
           <mat-icon>edit</mat-icon>
         </button>
-    
+
         <button mat-icon-button appHover (click)="openDialogForDeleting()">
           <mat-icon>delete</mat-icon>
         </button>
-      
+
       </mat-card-actions>
 
     </mat-card-footer>
@@ -62,9 +58,9 @@
         (click)="onFinishEdit()">
           <mat-icon>clear</mat-icon>
       </button>
-  
+
     </div>
-  
+
   </div>
 
 </mat-card>

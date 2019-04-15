@@ -1,3 +1,72 @@
-<p>
-  profile works!
-</p>
+<!-- <mat-card class="user-profile">
+
+  <mat-card-title class="user-profile__title">
+    Профиль
+  </mat-card-title>
+  <img mat-card-image src="../../assets/images/Oleg.jpg">
+
+  <mat-card-content>
+    <form #updatingForm="ngForm" class="user-profile__form">
+
+      <label for="nameInput">
+        <mat-icon *ngIf="isEdit">edit</mat-icon>
+      </label>
+
+      <mat-form-field class="user-profile__form_field">
+        <input matInput [(ngModel)]="userName" class="user-profile__input"
+          name="nameInput" type="text" [disabled]="!isEdit" required>
+      </mat-form-field>
+
+      <br>
+
+      <label for="emailInput">
+        <mat-icon *ngIf="isEdit">lock</mat-icon>
+      </label>
+      <mat-form-field class="user-profile__form_field">
+        <input matInput value="{{ userEmail }}"  class="user-profile__input"
+          name="emailInput" type="text" disabled>
+      </mat-form-field>
+
+    </form>
+
+  </mat-card-content>
+
+  <mat-card-actions class="user-profile__buttons">
+
+    <button mat-button *ngIf="!isEdit" (click)="onToggleEdit()">
+      Изменить
+    </button>
+
+    <button mat-button *ngIf="isEdit" (click)="onSave()"
+       [disabled]="updatingForm.form.invalid">
+      Сохранить
+    </button>
+
+    <button mat-button *ngIf="isEdit" (click)="onToggleEdit()"
+    >
+      Отменить
+    </button>
+  </mat-card-actions>
+
+</mat-card> -->
+<mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title>Общие сведения</mat-card-title>
+    </mat-card-header>
+    <mat-card-subtitle>E-mail</mat-card-subtitle>
+    <mat-card-title>
+      <label for="emailInput">
+        <mat-icon *ngIf="isEdit">lock</mat-icon>
+      </label>
+      <mat-form-field class="user-profile__form_field">
+        <input matInput value="{{ userEmail }}"  class="user-profile__input"
+          name="emailInput" type="text" disabled>
+      </mat-form-field>
+    </mat-card-title>
+    <mat-card-content>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>LIKE</button>
+      <button mat-button>SHARE</button>
+    </mat-card-actions>
+  </mat-card>

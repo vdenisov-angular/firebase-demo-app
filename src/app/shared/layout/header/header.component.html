@@ -1,19 +1,17 @@
 <mat-toolbar color="primary" class="toolbar-area">
 
-  <div class="project-name">
-    <!-- Welcome in Todo App !!! -->
-    Hello,
-      <span *ngIf="user">{{ user.email }}</span>
-      <span *ngIf="!user">anonimus</span>
-    !!!
-  </div>
+  <!-- <div>
+    Привет,
+      <span *ngIf="user">{{ user.dispalyName }}</span>
+      <span *ngIf="!user">Аноним</span>
+  </div> -->
 
   <div class="toolbar-buttons">
 
-    <div *ngIf="authorized === null">
+    <div *ngIf="authorized === null" class="loading-position">
       Loading...
     </div>
-    
+
     <div *ngIf="authorized === false">
 
       <nav mat-tab-nav-bar>
@@ -42,19 +40,22 @@
           [active]="rla.isActive">
         {{link.label}}
         </a>
-
-        <button mat-icon-button class="extraMenu"
-          [matMenuTriggerFor]="menu">
-          <mat-icon class="icon-size">account_circle</mat-icon>
-        </button>
       </nav>
-
-      <mat-menu #menu="matMenu">
+      <div class="hello-position">
+        Привет,
+        <span *ngIf="user">{{ user.displayName }}</span>
+        <span *ngIf="!user">Аноним</span>
+      </div>
+    <button mat-icon-button class="extraMenu"
+      [matMenuTriggerFor]="menu">
+      <mat-icon class="icon-size">account_circle</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu" yPosition="below" [overlapTrigger]="false">
         <button mat-menu-item class="extra" (click)="openProfilePage()">
-          Profile
+          Профиль
         </button>
         <button mat-menu-item class="extra" (click)="signOut()">
-          Sign Out
+          Выйти
         </button>
       </mat-menu>
 
